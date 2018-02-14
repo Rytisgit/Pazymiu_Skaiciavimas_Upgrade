@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1518514123 source:c:\users\lenovo t440p\desktop\unversiteto\pazymiuskaiciavimas\randutils.hpp
+	<cstddef>
+	<cstdint>
+	<cstdlib>
+	<random>
+	<array>
+	<functional>
+	<initializer_list>
+	<utility>
+	<type_traits>
+	<iterator>
+	<chrono>
+	<thread>
+	<algorithm>
+	<immintrin.h>
+	<process.h>
+	<unistd.h>
+
+1518611879 source:c:\users\lenovo t440p\desktop\unversiteto\pazymiuskaiciavimas\main.cpp
+	"randutils.hpp"
+	<iostream>
+	<iomanip>
+	<math.h>
+	<algorithm>
+	<cfloat>
+	<stdlib.h>
+	<random>
+
+1518514123 c:\users\lenovo t440p\desktop\unversiteto\pazymiuskaiciavimas\randutils.hpp
+	<cstddef>
+	<cstdint>
+	<cstdlib>
+	<random>
+	<array>
+	<functional>
+	<initializer_list>
+	<utility>
+	<type_traits>
+	<iterator>
+	<chrono>
+	<thread>
+	<algorithm>
+	<immintrin.h>
+	<process.h>
+	<unistd.h>
+
