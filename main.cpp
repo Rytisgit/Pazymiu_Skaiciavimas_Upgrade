@@ -1,5 +1,6 @@
 #include "randutils.hpp"
 #include <iostream>
+#include <cstdio>
 const auto iveskite = "Iveskite skaiciu tarp 1 ir 10";
 const auto baigti = " - Baigti Ivesti\n";
 const int exitnumber = {-1};
@@ -65,12 +66,15 @@ inline void grade (const std::string vardas,const std::string pavarde,const doub
     if(choice =='b')
     {
         double galutinisPazymis = {pazymiaiapdoroti*0.4+egzaminas*0.6};
-        std::cout<<vardas<<" "<<pavarde<<"\nGalutinis pazymis su medianu:"<<std::endl<<galutinisPazymis;
+        std::cout<<vardas<<" "<<pavarde<<"\nGalutinis pazymis su medianu:\n";
+        printf("%.2f\n", galutinisPazymis);
+
     }
     else
     {
         double galutinisPazymis = {pazymiaiapdoroti*0.4+egzaminas*0.6};
-        std::cout<<vardas<<" "<<pavarde<<"\nGalutinis pazymis su vidurkiu:"<<std::endl<<galutinisPazymis;
+        std::cout<<vardas<<" "<<pavarde<<"\nGalutinis pazymis su vidurkiu:\n";
+        printf("%.2f\n", galutinisPazymis);
     }
 }
 int main()
