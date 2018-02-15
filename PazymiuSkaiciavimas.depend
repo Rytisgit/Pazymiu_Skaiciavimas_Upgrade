@@ -17,15 +17,9 @@
 	<process.h>
 	<unistd.h>
 
-1518611879 source:c:\users\lenovo t440p\desktop\unversiteto\pazymiuskaiciavimas\main.cpp
+1518686314 source:c:\users\lenovo t440p\desktop\unversiteto\pazymiuskaiciavimas\main.cpp
 	"randutils.hpp"
 	<iostream>
-	<iomanip>
-	<math.h>
-	<algorithm>
-	<cfloat>
-	<stdlib.h>
-	<random>
 
 1518514123 c:\users\lenovo t440p\desktop\unversiteto\pazymiuskaiciavimas\randutils.hpp
 	<cstddef>
