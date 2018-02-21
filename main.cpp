@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <string>
+#include <sstream>
 const auto iveskite = "Iveskite skaiciu tarp 1 ir 10";
 const auto baigti = " - Baigti Ivesti\n";
 const int exitnumber = {-1};
@@ -99,34 +101,91 @@ int main()
         std::vector<double> medianai{};
         std::vector<int> index{};
         double egzaminas{};
-        ifstream f1("kursiokai.txt");
-        while(!f1.eof()) {
-            std::string tempstring{};
-            f1>>tempstring;
-            vardai.push_back(tempstring);
-            f1>>tempstring;
-            pavardes.push_back(tempstring);
-            index.push_back(pavardes.size());
-            int temp{};
-            for (int i = 0; i < 5; ++i) {
-                f1>> temp;
-                pazymiai.push_back(temp);
-            }
-            f1>>egzaminas;
+		std::ifstream f1("kursiokai.txt");
+		//f1.open;
+		std::string str("Split me by whitespaces");
+			std::string buf; // Have a buffer string
+			//std::stringstream ss(str); // Insert the string into a stream
+
+			std::vector<std::string> tokens; // Create vector to hold our words
+		std::string tempstring; int temp{};
+		
+        while(std::getline(f1, str)) {
+			f1.ignore();
+			
+			
+			
+			std::stringstream ss(str);
+			//std::cout << str;
+			tokens.clear();
+			while (ss >> buf) { str.erase(remove_if(buf.begin(), buf.end(), isspace), buf.end()); tokens.push_back(buf);}
+            //f1>>tempstring;
+			
+			
+		//	std::cout <<tempstring;
+            vardai.push_back(tokens[0]);
+
+           // f1>>tempstring; 
+			
+			
+			
+            pavardes.push_back(tokens[1]);
+			
+            index.push_back(pavardes.size()-1);
+
+			
+			
+               
+			for (int i = 0; i < 5; i++)
+			{
+			//pazymiai.push_back(std::stoi( tokens[i + 2]));
+				std::stringstream s_str(tokens[i + 2]);
+				int il;
+				s_str >> il;
+				std::cout << tokens[i + 2];
+				pazymiai.push_back(il);
+
+				
+			}
+				//std::cout << "A";
+            //f1>>egzaminas;
+			//egzaminas = (double)std::stoi(tokens[7]);
+			egzaminas = atoi(tokens[7].c_str());
             egzaminas*=0.6;
             vidurkiai.push_back( average(pazymiai) * 0.4 + egzaminas);
-            medianai.push_back(median(pazymiai)*0.4 + egzaminas);
+			double a = (double)median(pazymiai)*0.4;
+            medianai.push_back( a+ egzaminas); 
+			//medianai.push_back(0.1); std::cout << "A";
+			
         }
+		
+		
         int i{};
         int j{};
-        for (i = 0; i < pavardes.size()-1; ++i)
+        for (i = 0; i < pavardes.size()-1; ++i){
+			// Last i elements are already in place
+            for (j = 0; j < pavardes.size()-i-1; j++){ 
+				if (pavardes[j] > pavardes[j+1]){
+					std::swap(pavardes[j],pavardes[j+1]);
+					std::swap(vardai[j], vardai[j + 1]);
+					std::swap(vidurkiai[j], vidurkiai[j + 1]);
+					std::swap(medianai[j], medianai[j + 1]);
+				}
+			}
+		}
 
-            // Last i elements are already in place
-            for (j = 0; j < pavardes.size()-i-1; j++)
-                if (pavardes[j] > pavardes[j+1])
-                    std::swap
-                    std::swap(pavardes[j],pavardes[j+1]);
-                    std::swap(index[j],index[j+1]);
+		char t = { '\t' };
+		std::cout << "Pavarde" << t << "Vardas" << t << "Vidurkis" << t << "Medianas" << std::endl;
+		for (int i = 0; i < pavardes.size()-1; i++)
+		{
+			std::cout << pavardes[i] << t << vardai[i] << t;
+			printf("%.2f\t%.2f\n", vidurkiai[i],medianai[i]);
+			
+		}
+
+            
+		int a;
+		std::cin >> a;
     }
     else {
     std::string vardas{},pavarde{};
@@ -150,7 +209,7 @@ int main()
                 pazymiai.push_back(rng.uniform(1,10));
                 std::cout<<pazymiai[i]<<"\n";
             }
-            egzaminas = {rng.uniform(1,10)};
+            egzaminas = {(double)rng.uniform(1,10)};
             std::cout<<"egzaminas:"<<egzaminas<<"\n";
         }
         else  // irasyti pazymius
@@ -168,12 +227,13 @@ int main()
             }
             while (n!=-1);
             std::cout<<"Irasykite Egzamino ivertinima\n";
-            egzaminas= {getInput(1,10)};
+            egzaminas= {(double)getInput(1,10)};
         }
-    }
+   
     std::cout<<"Pasirinkimai: a - Vidurkis, b - Medianas \n";
     char choice = {aORb()};
     if(choice =='a')grade(vardas,pavarde,average(pazymiai),egzaminas,choice);
     else grade(vardas,pavarde,(double)median(pazymiai),egzaminas,choice);
     return 0;
+	}
 }
