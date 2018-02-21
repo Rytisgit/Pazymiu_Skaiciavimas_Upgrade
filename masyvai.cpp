@@ -140,19 +140,19 @@ int main()
                 else b[index]=n;
                 index++;
                 if (index==size) {
+                    size*=2;
                     if(aistheone) {
-                        size*=2;
                         b= new int [size];
                         for(int i = 0; i<size; i++) {
                             b[i]=a[i];
-                            for(int i = 0; i<size; i++) {
+                            //for(int i = 0; i<size; i++) {
                                 //  cout<<"a"<<a[i]<<endl;
-                            }
+                           // }
                         }
                         delete a;
+                        aistheone= false;
                     }
                     else {
-                        size*=2;
                         a= new int [size];
                         for(int i = 0; i<size; i++) {
                             a[i]=b[i];
@@ -161,6 +161,7 @@ int main()
                             }
                         }
                         delete b;
+                        aistheone=true
                     }
                 }
             }
