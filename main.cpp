@@ -8,7 +8,7 @@ const int exitnumber = {-1};
 const double eweight = 0.6;
 const double pweight = 0.4;
 
-inline int weightedmedian(std::vector<int> medi, double weight = 0.4)
+inline int weightedmedian(std::vector<int> & medi, double weight = 0.4)
 {
     std::sort(medi.begin(), medi.end());     // sort temperatures
 
@@ -30,22 +30,18 @@ inline double weightedaverage(const std::vector<int> & temps, double weight = 0.
 }
 inline int getInput(const int min, const int max,const int exit = INT_MAX)
 {
-
-
     std::string theInput;
     int inputAsInt;
-    std::getline(std::cin, theInput);
+//  b
+    //  std::getline(std::cin, theInput);
     //std::cout<<iveskite;
     do
     {
         std::getline(std::cin, theInput);
 
+        while(std::cin.fail() || std::cin.eof() || theInput.find_first_not_of("-0123456789") != std::string::npos) {
 
-        while(std::cin.fail() || std::cin.eof() || theInput.find_first_not_of("0123456789") != std::string::npos) {
-
-
-
-            if( theInput.find_first_not_of("0123456789") == std::string::npos) {
+            if( theInput.find_first_not_of("-0123456789") == std::string::npos) {
 
                 std::cin.clear();
                 std::cin.ignore(256,'\n');
@@ -56,17 +52,20 @@ inline int getInput(const int min, const int max,const int exit = INT_MAX)
             std::getline(std::cin, theInput);
         }
 
-        std::string::size_type st;
+       // std::string::size_type st;
         inputAsInt= atoi(theInput.c_str());
     //inputAsInt = std::stoi(theInput,&st);
-        if(inputAsInt<min||inputAsInt>max)
-        { std::cout<<iveskite;
-            if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
-            else std::cout<<"\n";
-
+        if(inputAsInt == exit) {
+            break;
         }
-        else break;
-    } while (inputAsInt!=exit);
+        else {
+            if(inputAsInt<min||inputAsInt>max&&exit==INT_MAX){
+                std::cout<<iveskite;
+                if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
+                else std::cout<<"\n";}
+            else break;
+        }
+    } while (inputAsInt!=exit||exit!=INT_MAX);
 
    /* int input{};
     do
@@ -85,6 +84,7 @@ inline int getInput(const int min, const int max,const int exit = INT_MAX)
     }
     while (input!=exit);
     return input;*/
+    std::cout<<"grazinam "<<inputAsInt;
     return inputAsInt;
 
 }

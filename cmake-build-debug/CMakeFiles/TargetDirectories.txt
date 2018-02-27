@@ -1,0 +1,4 @@
+C:/Users/lenovo t440p/Desktop/unversiteto/pazymiai/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/lenovo t440p/Desktop/unversiteto/pazymiai/cmake-build-debug/CMakeFiles/helloDemo.dir
+C:/Users/lenovo t440p/Desktop/unversiteto/pazymiai/cmake-build-debug/CMakeFiles/masyvai.dir
+C:/Users/lenovo t440p/Desktop/unversiteto/pazymiai/cmake-build-debug/CMakeFiles/rebuild_cache.dir

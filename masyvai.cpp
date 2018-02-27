@@ -161,7 +161,7 @@ int main()
                             }
                         }
                         delete b;
-                        aistheone=true
+                        aistheone=true;
                     }
                 }
             }
