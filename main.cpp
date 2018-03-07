@@ -2,148 +2,37 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-const auto iveskite = "Iveskite skaiciu tarp 1 ir 10";
-const auto baigti = " - Baigti Ivesti\n";
-const int exitnumber = {-1};
-const double eweight = 0.6;
-const double pweight = 0.4;
+#include "pazym.h"
+//const auto iveskite = "Iveskite skaiciu tarp 1 ir 10";
+//const auto baigti = " - Baigti Ivesti\n";
+//const int exitnumber = {-1};
+//const double eweight = 0.6;
+//const double pweight = 0.4;
 
-inline int weightedmedian(std::vector<int> & medi, double weight = 0.4)
-{
-    std::sort(medi.begin(), medi.end());     // sort temperatures
 
-    int tmedian{};
-    if (medi.size() % 2 == 0)           // even
-        tmedian = (medi[medi.size() / 2 - 1] + medi[medi.size() / 2]) / 2;
-    else                                // odd
-        tmedian = medi[medi.size() / 2];
-
-    return weight * tmedian;
-}
-inline double weightedaverage(const std::vector<int> & temps, double weight = 0.4)
-{
-    double sum{0};
-    for (double x : temps)
-        sum += x;
-
-    return weight * sum / temps.size();
-}
-inline int getInput(const int min, const int max,const int exit = INT_MAX)
-{
-    std::string theInput;
-    int inputAsInt;
-//  b
-    //  std::getline(std::cin, theInput);
-    //std::cout<<iveskite;
-    do
-    {
-        std::getline(std::cin, theInput);
-
-        while(std::cin.fail() || std::cin.eof() || theInput.find_first_not_of("-0123456789") != std::string::npos) {
-
-            if( theInput.find_first_not_of("-0123456789") == std::string::npos) {
-
-                std::cin.clear();
-                std::cin.ignore(256,'\n');
-            }
-            std::cout<<iveskite;
-            if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
-            else std::cout<<"\n";
-            std::getline(std::cin, theInput);
-        }
-
-       // std::string::size_type st;
-        inputAsInt= atoi(theInput.c_str());
-    //inputAsInt = std::stoi(theInput,&st);
-        if(inputAsInt == exit) {
-            break;
-        }
-        else {
-            if(inputAsInt<min||inputAsInt>max&&exit==INT_MAX){
-                std::cout<<iveskite;
-                if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
-                else std::cout<<"\n";}
-            else break;
-        }
-    } while (inputAsInt!=exit||exit!=INT_MAX);
-
-   /* int input{};
-    do
-    {
-        std::cin>>input;
-        if(input<min||input>max||std::cin.fail())
-        {
-            std::cout<<iveskite;
-            if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
-            else std::cout<<"\n";
-            //std::cin.clear();
-            // discard 'bad' character(s)
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
-        else break;
-    }
-    while (input!=exit);
-    return input;*/
-    std::cout<<"grazinam "<<inputAsInt;
-    return inputAsInt;
-
-}
-inline char aORb()
-{
-    char choice{};
-    do
-    {
-        std::cin>>choice;
-        if(choice!='a'&&choice!='b')
-        {
-            std::cout<<"Rinkites a arba b\n";
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
-    }
-    while(choice!='a'&&choice!='b');
-    std::cin.clear();
-    std::cin.ignore(256,'\n');
-    return choice;
-}
-inline void grade (const std::string vardas,const std::string pavarde,const double pazymiaiapdoroti,const int weightedegzaminas,const char choice)
-{
-    if(choice =='b')
-    {
-        double galutinisPazymis = {pazymiaiapdoroti+weightedegzaminas};
-        std::cout<<vardas<<" "<<pavarde<<"\nGalutinis pazymis su medianu:\n";
-        printf("%.2f\n", galutinisPazymis);
-
-    }
-    else
-    {
-        double galutinisPazymis = {pazymiaiapdoroti+weightedegzaminas};
-        std::cout<<vardas<<" "<<pavarde<<"\nGalutinis pazymis su vidurkiu:\n";
-        printf("%.2f\n", galutinisPazymis);
-    }
-}
 int main()
 {
     std::cout<<"Pasirinkimai: a - Skaityti is failo, b - 1 mokinio duomenu irasymas \n";
     if(aORb()=='a'){
+        std::vector<mokinys> mok;
         std::vector<int> pazymiai{};
-        std::vector<std::string> pavardes{};
-        std::vector<std::string> vardai{};
-        std::vector<double> vidurkiai{};
-        std::vector<double> medianai{};
-        std::vector<int> index{};
+        int index{0};
         double egzaminas{};
 		std::ifstream f1("kursiokai2.txt");
 		std::string str{};
         std::string buf; // Have a buffer string
         std::vector<std::string> tokens; // Create vector to hold our words
 		std::string tempstring; int temp{};
+        mokinys tempmok;
         while(std::getline(f1, str)) {
 			std::stringstream ss(str);
 			tokens.clear();
 			while (ss >> buf) { str.erase(remove_if(buf.begin(), buf.end(), isspace), buf.end()); tokens.push_back(buf);}
-            vardai.push_back(tokens[0]);
-            pavardes.push_back(tokens[1]);
-            index.push_back(pavardes.size()-1);
+            tempmok.vardas = tokens[0];
+            tempmok.pavarde = tokens[1];
+//            vardai.push_back(tokens[0]);
+//            pavardes.push_back(tokens[1]);
+//            index.push_back(pavardes.size()-1);
 			for (int i = 0; i < 5; i++)
 			{
 				std::stringstream s_str(tokens[i + 2]);
@@ -151,35 +40,38 @@ int main()
 				s_str >> il;
 				pazymiai.push_back(il);
 			}
-            //egzaminas = (double)std::stoi(tokens[7]);
+//            egzaminas = (double)std::stoi(tokens[7]);
 			egzaminas = (double)atoi(tokens[7].c_str())*eweight;
-            vidurkiai.push_back( weightedaverage(pazymiai) + egzaminas);
-            medianai.push_back( (double)weightedmedian(pazymiai) + egzaminas);
+            tempmok.vidurkis =  weightedaverage(pazymiai) + egzaminas;
+            tempmok.medianas =  (double)weightedmedian(pazymiai, pweight) + egzaminas;
+            mok.push_back(tempmok);
+//            medianai.push_back( (double)weightedmedian(pazymiai) + egzaminas);
             for (int j = 0; j < 5; ++j) {
                 std::cout<<pazymiai[j]<<" ";
             }
             //std::cout<<" "<<average(pazymiai)+egzaminas<<" "<<median(pazymiai)+egzaminas<<std::endl;
             pazymiai.clear();
         }
-        double tem{};
-        for (int i = 0; i < pavardes.size()-1; ++i){
-            for (int j = 0; j < pavardes.size()-i-1; j++){
-				if (pavardes[j] > pavardes[j+1]){
-					std::swap(pavardes[j],pavardes[j+1]);
-					std::swap(vardai[j], vardai[j + 1]);
-                    tem = vidurkiai[j];
-                    vidurkiai[j] = vidurkiai [j+1];
-                    vidurkiai[j+1]=tem;
-                    tem = medianai[j];
-                    medianai[j] = medianai [j+1];
-                    medianai[j+1]=tem;
+        printf("%-15s%-15s%s\t%s\n" , "Pavarde","Vardas","Vidurkis","Medianas");
+        for (int i = 0; i < mok.size(); i++)
+        {
+            printf("%-15s%-15s%.2f\t%.2f\n", mok[i].pavarde.c_str(),mok[i].vardas.c_str(),mok[i].vidurkis,mok[i].medianas);
+        }
+        for (int i = 0; i < mok.size(); ++i){
+            for (int j = 0; j < mok.size()-1; ++j){
+				if (mok[j].pavarde > mok[j+1].pavarde){
+//					tempmok=mok[j];
+//                    mok[j]=mok[j+1];
+//                    mok[j+1]=tempmok;
+                    std::swap(mok[j],mok[j+1]);
+
 				}
 			}
 		}
         printf("%-15s%-15s%s\t%s\n" , "Pavarde","Vardas","Vidurkis","Medianas");
-		for (int i = 0; i < pavardes.size()-1; i++)
+		for (int i = 0; i < mok.size(); i++)
 		{
-			printf("%-15s%-15s%.2f\t%.2f\n", pavardes[i].c_str(),vardai[i].c_str(),vidurkiai[i],medianai[i]);
+			printf("%-15s%-15s%.2f\t%.2f\n", mok[i].pavarde.c_str(),mok[i].vardas.c_str(),mok[i].vidurkis,mok[i].medianas);
 		}
 		//int a;
 		//std::cin >> a;
@@ -230,7 +122,7 @@ int main()
     std::cout<<"Pasirinkimai: a - Vidurkis, b - Medianas \n";
     char choice = {aORb()};
     if(choice =='a')grade(vardas,pavarde,weightedaverage(pazymiai),egzaminas,choice);
-    else grade(vardas,pavarde,(double)weightedmedian(pazymiai),egzaminas,choice);
+    else grade(vardas,pavarde,(double)weightedmedian(pazymiai,pweight),egzaminas,choice);
     return 0;
 	}
 }
