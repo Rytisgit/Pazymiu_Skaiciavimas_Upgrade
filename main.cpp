@@ -3,11 +3,11 @@
 #include <fstream>
 #include <sstream>
 #include "pazym.h"
-//const auto iveskite = "Iveskite skaiciu tarp 1 ir 10";
-//const auto baigti = " - Baigti Ivesti\n";
-//const int exitnumber = {-1};
-//const double eweight = 0.6;
-//const double pweight = 0.4;
+const std::string iveskite = {"Iveskite skaiciu tarp 1 ir 10"};
+const std::string baigti = {" - Baigti Ivesti\n"};
+const int exitnumber = {-1};
+const double eweight = {0.6};
+const double pweight = {0.4};
 
 
 int main()
@@ -18,12 +18,24 @@ int main()
         std::vector<int> pazymiai{};
         int index{0};
         double egzaminas{};
-		std::ifstream f1("kursiokai2.txt");
-		std::string str{};
+		std::ifstream f1;
+        f1.exceptions ( std::ifstream::failbit | std::ifstream::badbit );
+        try {
+            f1.open ("kursiokai2.txt");
+            std::string buf;
+            std::getline(f1, buf);
+            f1.seekg(0, std::ios::beg);
+        }
+        catch (std::ifstream::failure e){
+            std::cout<<"Failed to open/read file\n";
+            return 0;
+        }
+        std::string str{};
         std::string buf; // Have a buffer string
         std::vector<std::string> tokens; // Create vector to hold our words
 		std::string tempstring; int temp{};
         mokinys tempmok;
+        try {
         while(std::getline(f1, str)) {
 			std::stringstream ss(str);
 			tokens.clear();
@@ -51,20 +63,13 @@ int main()
             }
             //std::cout<<" "<<average(pazymiai)+egzaminas<<" "<<median(pazymiai)+egzaminas<<std::endl;
             pazymiai.clear();
-        }
-        printf("%-15s%-15s%s\t%s\n" , "Pavarde","Vardas","Vidurkis","Medianas");
-        for (int i = 0; i < mok.size(); i++)
-        {
-            printf("%-15s%-15s%.2f\t%.2f\n", mok[i].pavarde.c_str(),mok[i].vardas.c_str(),mok[i].vidurkis,mok[i].medianas);
-        }
+        }}
+        catch (std::ifstream::failure e){}
+
         for (int i = 0; i < mok.size(); ++i){
             for (int j = 0; j < mok.size()-1; ++j){
 				if (mok[j].pavarde > mok[j+1].pavarde){
-//					tempmok=mok[j];
-//                    mok[j]=mok[j+1];
-//                    mok[j+1]=tempmok;
                     std::swap(mok[j],mok[j+1]);
-
 				}
 			}
 		}
@@ -73,8 +78,6 @@ int main()
 		{
 			printf("%-15s%-15s%.2f\t%.2f\n", mok[i].pavarde.c_str(),mok[i].vardas.c_str(),mok[i].vidurkis,mok[i].medianas);
 		}
-		//int a;
-		//std::cin >> a;
     }
     else {
     std::string vardas{},pavarde{};

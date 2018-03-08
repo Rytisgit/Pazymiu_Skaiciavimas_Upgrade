@@ -17,14 +17,14 @@ struct mokinys{
     double vidurkis{};
     double medianas{};
 };
-const auto iveskite = "Iveskite skaiciu tarp 1 ir 10";
-const auto baigti = " - Baigti Ivesti\n";
-const int exitnumber = {-1};
-const double eweight = 0.6;
-const double pweight = 0.4;
+extern const std::string iveskite;
+extern const std::string baigti;
+extern const int exitnumber;
+extern const double eweight;
+extern const double pweight;
 int weightedmedian(std::vector<int> &, double weight = 0.4);
 double weightedaverage(const std::vector<int> &, double weight = 0.4);
 void grade (const std::string ,const std::string,const double,const int ,const char );
-inline int getInput(const int min, const int max,const int exit = INT_MAX);
-inline char aORb();
+int getInput(const int min, const int max,const int exit = INT_MAX);
+char aORb();
 

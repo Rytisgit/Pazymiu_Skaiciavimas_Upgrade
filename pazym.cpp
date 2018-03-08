@@ -4,7 +4,7 @@
 
 #include "pazym.h"
 
-inline void grade (const std::string vardas,const std::string pavarde,const double pazymiaiapdoroti,const int weightedegzaminas,const char choice)
+void grade (const std::string vardas,const std::string pavarde,const double pazymiaiapdoroti,const int weightedegzaminas,const char choice)
 {
     if(choice =='b')
     {
@@ -20,7 +20,7 @@ inline void grade (const std::string vardas,const std::string pavarde,const doub
         printf("%.2f\n", galutinisPazymis);
     }
 }
-inline int weightedmedian(std::vector<int> & medi, double weight)
+int weightedmedian(std::vector<int> & medi, double weight)
 {
     std::sort(medi.begin(), medi.end());     // sort temperatures
 
@@ -32,7 +32,7 @@ inline int weightedmedian(std::vector<int> & medi, double weight)
 
     return weight * tmedian;
 }
-inline double weightedaverage(const std::vector<int> & temps, double weight)
+ double weightedaverage(const std::vector<int> & temps, double weight)
 {
     double sum{0};
     for (double x : temps)
@@ -40,7 +40,7 @@ inline double weightedaverage(const std::vector<int> & temps, double weight)
 
     return weight * sum / temps.size();
 }
-inline int getInput(const int min, const int max,const int exit)
+ int getInput(const int min, const int max,const int exit)
 {
     std::string theInput;
     int inputAsInt;
@@ -100,7 +100,7 @@ inline int getInput(const int min, const int max,const int exit)
     return inputAsInt;
 
 }
-inline char aORb()
+ char aORb()
 {
     char choice{};
     do

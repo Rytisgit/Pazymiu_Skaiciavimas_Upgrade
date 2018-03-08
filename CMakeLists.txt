@@ -7,7 +7,7 @@ set(CMAKE_CCX_STANDARD 11)
 # Recurse into the "Hello" and "Demo" subdirectories. This does not actually
 # cause another cmake executable to run. The same process will walk through
 # the project's entire directory structure.
- #add_executable (helloDemo main.cpp randutils.hpp  notworking.h)
+ #add_executable (helloDemo main.cpp randutils.hpp )
 set(SOURCE_FILES main.cpp randutils.hpp pazym.cpp pazym.h )
 add_executable(pazymiai ${SOURCE_FILES})
 #add_executable (masyvai masyvai.cpp randutils.hpp)
