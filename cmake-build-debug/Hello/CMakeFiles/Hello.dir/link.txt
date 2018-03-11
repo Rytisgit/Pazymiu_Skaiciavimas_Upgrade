@@ -1,2 +1,0 @@
-C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\ar.exe qc libHello.a  CMakeFiles/Hello.dir/main.cpp.obj
-C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\ranlib.exe libHello.a

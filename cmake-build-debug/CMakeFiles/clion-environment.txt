@@ -1,4 +1,0 @@
-ToolSet: w64 5.0@C:\Users\lenovo t440p\Desktop\mingw64
-Options: 
-
-Options:
