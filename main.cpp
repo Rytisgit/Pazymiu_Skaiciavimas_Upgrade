@@ -21,12 +21,12 @@ int main()
 		std::ifstream f1;
         f1.exceptions ( std::ifstream::failbit | std::ifstream::badbit );
         try {
-            f1.open ("kursiokai2.txt");
+            f1.open ("kursiokai.txt");
             std::string buf;
             std::getline(f1, buf);
             f1.seekg(0, std::ios::beg);
         }
-        catch (std::ifstream::failure e){
+        catch (std::ifstream::failure &e){
             std::cout<<"Failed to open/read file\n";
             return 0;
         }
@@ -55,29 +55,34 @@ int main()
 //            egzaminas = (double)std::stoi(tokens[7]);
 			egzaminas = (double)atoi(tokens[7].c_str())*eweight;
             tempmok.vidurkis =  weightedaverage(pazymiai) + egzaminas;
-            tempmok.medianas =  (double)weightedmedian(pazymiai, pweight) + egzaminas;
+            tempmok.medianas =  weightedmedian(pazymiai, pweight) + egzaminas;
             mok.push_back(tempmok);
 //            medianai.push_back( (double)weightedmedian(pazymiai) + egzaminas);
-            for (int j = 0; j < 5; ++j) {
-                std::cout<<pazymiai[j]<<" ";
-            }
+//            for (int j = 0; j < 5; ++j) {
+//                std::cout<<pazymiai[j]<<" ";
+//            }
             //std::cout<<" "<<average(pazymiai)+egzaminas<<" "<<median(pazymiai)+egzaminas<<std::endl;
             pazymiai.clear();
         }}
-        catch (std::ifstream::failure e){}
+        catch (std::ifstream::failure &e){}
 
         for (int i = 0; i < mok.size(); ++i){
             for (int j = 0; j < mok.size()-1; ++j){
 				if (mok[j].pavarde > mok[j+1].pavarde){
                     std::swap(mok[j],mok[j+1]);
+
 				}
 			}
 		}
         printf("%-15s%-15s%s\t%s\n" , "Pavarde","Vardas","Vidurkis","Medianas");
-		for (int i = 0; i < mok.size(); i++)
-		{
-			printf("%-15s%-15s%.2f\t%.2f\n", mok[i].pavarde.c_str(),mok[i].vardas.c_str(),mok[i].vidurkis,mok[i].medianas);
-		}
+//		for (int i = 0; i < mok.size(); i++)
+//		{
+//			printf("%-15s%-15s%.2f\t%.2f\n", mok[i].pavarde.c_str(),mok[i].vardas.c_str(),mok[i].vidurkis,mok[i].medianas);
+//		}
+        for (auto const &it : mok)
+        {
+            printf("%-15s%-15s%.2f\t%.2f\n", it.pavarde.c_str(),it.vardas.c_str(),it.vidurkis,it.medianas);
+        }
     }
     else {
     std::string vardas{},pavarde{};
@@ -125,7 +130,7 @@ int main()
     std::cout<<"Pasirinkimai: a - Vidurkis, b - Medianas \n";
     char choice = {aORb()};
     if(choice =='a')grade(vardas,pavarde,weightedaverage(pazymiai),egzaminas,choice);
-    else grade(vardas,pavarde,(double)weightedmedian(pazymiai,pweight),egzaminas,choice);
+    else grade(vardas,pavarde,weightedmedian(pazymiai,pweight),egzaminas,choice);
     return 0;
 	}
 }

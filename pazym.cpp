@@ -4,7 +4,7 @@
 
 #include "pazym.h"
 
-void grade (const std::string vardas,const std::string pavarde,const double pazymiaiapdoroti,const int weightedegzaminas,const char choice)
+void grade (const std::string  vardas,const std::string pavarde,const double  pazymiaiapdoroti,const double weightedegzaminas,const char choice)
 {
     if(choice =='b')
     {
@@ -20,7 +20,7 @@ void grade (const std::string vardas,const std::string pavarde,const double pazy
         printf("%.2f\n", galutinisPazymis);
     }
 }
-int weightedmedian(std::vector<int> & medi, double weight)
+double weightedmedian(std::vector<int> & medi,const double weight)
 {
     std::sort(medi.begin(), medi.end());     // sort temperatures
 
@@ -40,7 +40,7 @@ int weightedmedian(std::vector<int> & medi, double weight)
 
     return weight * sum / temps.size();
 }
- int getInput(const int min, const int max,const int exit)
+ int getInput(const int  min, const int  max,const int  exit)
 {
     std::string theInput;
     int inputAsInt;
