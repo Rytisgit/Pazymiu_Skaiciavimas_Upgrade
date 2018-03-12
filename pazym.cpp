@@ -2,6 +2,7 @@
 // Created by SuperPC on 3/6/2018.
 //
 
+
 #include "pazym.h"
 
 void grade (const std::string  vardas,const std::string pavarde,const double  pazymiaiapdoroti,const double weightedegzaminas,const char choice)
@@ -42,6 +43,7 @@ double weightedmedian(std::vector<int> & medi,const double weight)
 }
  int getInput(const int  min, const int  max,const int  exit)
 {
+
     std::string theInput;
     int inputAsInt;
 //  b
@@ -116,4 +118,22 @@ double weightedmedian(std::vector<int> & medi,const double weight)
     std::cin.clear();
     std::cin.ignore(256,'\n');
     return choice;
+}
+
+void generateStudentFile(const std::string name, const int length) {
+    std::ostringstream ss;
+    std::ofstream fs(name);
+    randutils::mt19937_rng rng;
+    for (int i = 1; length >= i; ++i) {
+        ss<<"Vardas"<<i<<" Pavarde"<<i;
+
+        for (int j = 0; j < 5; ++j) {
+            ss<<' '<<rng.uniform(1,10);
+        }
+        ss<<'\n';
+        fs<<ss.str();
+        //ss.str(std::string());
+        std::ostringstream().swap(ss);
+    }
+
 }
