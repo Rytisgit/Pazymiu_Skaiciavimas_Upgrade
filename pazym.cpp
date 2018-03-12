@@ -125,8 +125,8 @@ void generateStudentFile(const std::string name, const int length) {
     std::ofstream fs(name);
     randutils::mt19937_rng rng;
     for (int i = 1; length >= i; ++i) {
-        ss<<"Vardas"<<i<<" Pavarde"<<i;
-
+//        ss<<"Vardas"<<i<<" Pavarde"<<i;
+        ss<<"V"<<i<<" P"<<i;
         for (int j = 0; j < 5; ++j) {
             ss<<' '<<rng.uniform(1,10);
         }

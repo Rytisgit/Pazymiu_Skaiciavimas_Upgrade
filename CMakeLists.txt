@@ -8,6 +8,8 @@ set(CMAKE_CCX_STANDARD 11)
 # cause another cmake executable to run. The same process will walk through
 # the project's entire directory structure.
  #add_executable (helloDemo main.cpp randutils.hpp )
+SET(GCC_COVERAGE_COMPILE_FLAGS "-O3 -fopenmp")
+add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
 set(SOURCE_FILES main.cpp randutils.hpp pazym.cpp pazym.h )
 add_executable(pazymiai ${SOURCE_FILES})
 #add_executable (masyvai masyvai.cpp randutils.hpp)

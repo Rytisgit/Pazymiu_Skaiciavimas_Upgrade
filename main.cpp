@@ -1,6 +1,6 @@
 #include <chrono>
 #include "pazym.h"
-
+#include <deque>
 const std::string iveskite = {"Iveskite skaiciu tarp 1 ir 10"};
 const std::string baigti = {" - Baigti Ivesti\n"};
 const int exitnumber = {-1};
@@ -12,30 +12,29 @@ int main()
 {
     std::cout<<"Pasirinkimai: a - stress, b - normalus veikimas \n";
 
-        if (aORb()=='a'){
+//        if (aORb()=='a'){
+    if (true){
+        std::deque<geraasMokinys> deq;
 
             auto start = std::chrono::steady_clock::now();
             generateStudentFile("f10",10);
             generateStudentFile("f100",100);
             generateStudentFile("f1000",1000);
             generateStudentFile("f10000",10000);
-            generateStudentFile("f100000",1000000);
+            generateStudentFile("f100000",100000);
             auto end = std::chrono::steady_clock::now();
             std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
-
-
             std::vector<geraasMokinys> gMok;
             std::vector<blogasMokinys> bMok;
             std::vector<int> pazymiai{};
             int il{};
-            double egzaminas{};
             std::string file{"f1"};
             std::string str{};
             std::string buf; // Have a buffer string
             std::vector<std::string> tokens; // Create vector to hold our words
             geraasMokinys tempmok;
             for (int i = 0; i < 5; ++i) {
-                auto start = std::chrono::steady_clock::now();
+                start = std::chrono::steady_clock::now();
                 file+='0';
                 std::ifstream f1(file);
                 while(std::getline(f1, str)) { //read file until the end line by line
@@ -67,7 +66,7 @@ int main()
 //            {
 //                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
 //            }
-                auto end = std::chrono::steady_clock::now();
+                end = std::chrono::steady_clock::now();
                 std::cout <<file<< " Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds egzamino mokiniu skaicius " <<gMok.size() <<" Ne egzamino mokiniu skacius"<<bMok.size()<< std::endl;
 
             }
