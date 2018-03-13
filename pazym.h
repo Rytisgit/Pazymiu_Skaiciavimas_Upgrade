@@ -14,7 +14,8 @@
 #include <fstream>
 #include <sstream>
 #include "randutils.hpp"
-#include <iostream>
+#include <deque>
+#include <list>
 
 struct mokinys{
     std::string pavarde{};
@@ -23,7 +24,7 @@ struct mokinys{
     double medianas{};
 };
 
-struct geraasMokinys{
+struct gerasMokinys{
     std::string pavarde{};
     std::string vardas{};
 };
@@ -42,5 +43,8 @@ void grade (std::string ,std::string ,double ,double ,char );
 int getInput(int  , int , int exit = INT_MAX);
 char aORb();
 void generateStudentFile(std::string name,int length);
+void splitbygrades(std::vector<gerasMokinys>&,std::vector<blogasMokinys>&);
+void splitbygrades(std::deque<gerasMokinys>&,std::deque<blogasMokinys>&);
+void splitbygrades(std::list<gerasMokinys>&,std::list<blogasMokinys>&);
 
 #endif //PAZYMIAI_PAZYM_H

@@ -137,3 +137,167 @@ void generateStudentFile(const std::string name, const int length) {
     }
 
 }
+
+void splitbygrades(std::vector<gerasMokinys> &gMok, std::vector<blogasMokinys> &bMok) {
+    auto start = std::chrono::steady_clock::now();
+//    generateStudentFile("f10",10);
+//    generateStudentFile("f100",100);
+//    generateStudentFile("f1000",1000);
+//    generateStudentFile("f10000",10000);
+//    generateStudentFile("f100000",100000);
+    auto end = std::chrono::steady_clock::now();
+    std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+    std::vector<int> pazymiai{};
+    int il{};
+    std::string file{"f1"};
+    std::string str{};
+    std::string buf; // Have a buffer string
+    std::vector<std::string> tokens; // Create vector to hold our words
+    gerasMokinys tempmok;
+    for (int i = 0; i < 5; ++i) {
+        start = std::chrono::steady_clock::now();
+        file+='0';
+        std::ifstream f1(file);
+        while(std::getline(f1, str)) { //read file until the end line by line
+
+            std::stringstream ss (str);
+            tokens.clear();
+            while (ss >> buf) {
+                tokens.push_back(buf);
+            }
+            for (int k = 0; k < 5; ++k) {
+                std::stringstream s_str(tokens[k + 2]);
+                s_str >> il;
+                pazymiai.push_back(il);
+            }
+
+            tempmok.vardas = tokens[0];
+            tempmok.pavarde = tokens[1];
+            weightedaverage(pazymiai,1)<6 ? bMok.push_back({tempmok.vardas,tempmok.pavarde}) : gMok.push_back(tempmok);
+
+            pazymiai.clear();
+        }
+            std::cout<<"Egzaminai\n"; //isspausdinti tinkamus / netinkamus
+            for (auto const &it : gMok)
+            {
+                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
+            }
+            std::cout<<"Ne egzaminai\n";
+            for (auto const &it : bMok)
+            {
+                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
+            }
+        end = std::chrono::steady_clock::now();
+        std::cout <<file<< " Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds egzamino mokiniu skaicius " <<gMok.size() <<" Ne egzamino mokiniu skacius"<<bMok.size()<< std::endl;
+
+    }
+}
+
+void splitbygrades(std::deque<gerasMokinys> & gMok, std::deque<blogasMokinys> &bMok) {
+    auto start = std::chrono::steady_clock::now();
+//    generateStudentFile("f10",10);
+//    generateStudentFile("f100",100);
+//    generateStudentFile("f1000",1000);
+//    generateStudentFile("f10000",10000);
+//    generateStudentFile("f100000",100000);
+    auto end = std::chrono::steady_clock::now();
+    std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+    std::vector<int> pazymiai{};
+    int il{};
+    std::string file{"f1"};
+    std::string str{};
+    std::string buf; // Have a buffer string
+    std::vector<std::string> tokens; // Create vector to hold our words
+    gerasMokinys tempmok;
+    for (int i = 0; i < 5; ++i) {
+        start = std::chrono::steady_clock::now();
+        file+='0';
+        std::ifstream f1(file);
+        while(std::getline(f1, str)) { //read file until the end line by line
+
+            std::stringstream ss (str);
+            tokens.clear();
+            while (ss >> buf) {
+                tokens.push_back(buf);
+            }
+            for (int k = 0; k < 5; ++k) {
+                std::stringstream s_str(tokens[k + 2]);
+                s_str >> il;
+                pazymiai.push_back(il);
+            }
+
+            tempmok.vardas = tokens[0];
+            tempmok.pavarde = tokens[1];
+            weightedaverage(pazymiai,1)<6 ? bMok.push_back({tempmok.vardas,tempmok.pavarde}) : gMok.push_back(tempmok);
+
+            pazymiai.clear();
+        }
+//            std::cout<<"Egzaminai\n"; //isspausdinti tinkamus / netinkamus
+//            for (auto const &it : gMok)
+//            {
+//                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
+//            }
+//            std::cout<<"Ne egzaminai\n";
+//            for (auto const &it : bMok)
+//            {
+//                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
+//            }
+        end = std::chrono::steady_clock::now();
+        std::cout <<file<< " Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds egzamino mokiniu skaicius " <<gMok.size() <<" Ne egzamino mokiniu skacius"<<bMok.size()<< std::endl;
+
+    }
+}
+void splitbygrades(std::list<gerasMokinys> & gMok, std::list<blogasMokinys> &bMok) {
+    auto start = std::chrono::steady_clock::now();
+//    generateStudentFile("f10",10);
+//    generateStudentFile("f100",100);
+//    generateStudentFile("f1000",1000);
+//    generateStudentFile("f10000",10000);
+//    generateStudentFile("f100000",100000);
+    auto end = std::chrono::steady_clock::now();
+    std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+    std::vector<int> pazymiai{};
+    int il{};
+    std::string file{"f1"};
+    std::string str{};
+    std::string buf; // Have a buffer string
+    std::vector<std::string> tokens; // Create vector to hold our words
+    gerasMokinys tempmok;
+    for (int i = 0; i < 5; ++i) {
+        start = std::chrono::steady_clock::now();
+        file+='0';
+        std::ifstream f1(file);
+        while(std::getline(f1, str)) { //read file until the end line by line
+
+            std::stringstream ss (str);
+            tokens.clear();
+            while (ss >> buf) {
+                tokens.push_back(buf);
+            }
+            for (int k = 0; k < 5; ++k) {
+                std::stringstream s_str(tokens[k + 2]);
+                s_str >> il;
+                pazymiai.push_back(il);
+            }
+
+            tempmok.vardas = tokens[0];
+            tempmok.pavarde = tokens[1];
+            weightedaverage(pazymiai,1)<6 ? bMok.push_back({tempmok.vardas,tempmok.pavarde}) : gMok.push_back(tempmok);
+
+            pazymiai.clear();
+        }
+//            std::cout<<"Egzaminai\n"; //isspausdinti tinkamus / netinkamus
+//            for (auto const &it : gMok)
+//            {
+//                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
+//            }
+//            std::cout<<"Ne egzaminai\n";
+//            for (auto const &it : bMok)
+//            {
+//                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
+//            }
+        end = std::chrono::steady_clock::now();
+        std::cout <<file<< " Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds egzamino mokiniu skaicius " <<gMok.size() <<" Ne egzamino mokiniu skacius"<<bMok.size()<< std::endl;
+
+    }
+}
