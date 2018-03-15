@@ -146,7 +146,7 @@ void splitbygrades(std::vector<gerasMokinys> &gMok, std::vector<blogasMokinys> &
 //    generateStudentFile("f10000",10000);
 //    generateStudentFile("f100000",100000);
     auto end = std::chrono::steady_clock::now();
-    std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+  //  std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
     std::vector<int> pazymiai{};
     int il{};
     std::string file{"f1"};
@@ -177,16 +177,16 @@ void splitbygrades(std::vector<gerasMokinys> &gMok, std::vector<blogasMokinys> &
 
             pazymiai.clear();
         }
-            std::cout<<"Egzaminai\n"; //isspausdinti tinkamus / netinkamus
-            for (auto const &it : gMok)
-            {
-                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
-            }
-            std::cout<<"Ne egzaminai\n";
-            for (auto const &it : bMok)
-            {
-                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
-            }
+//            std::cout<<"Egzaminai\n"; //isspausdinti tinkamus / netinkamus
+//            for (auto const &it : gMok)
+//            {
+//                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
+//            }
+//            std::cout<<"Ne egzaminai\n";
+//            for (auto const &it : bMok)
+//            {
+//                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
+//            }
         end = std::chrono::steady_clock::now();
         std::cout <<file<< " Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds egzamino mokiniu skaicius " <<gMok.size() <<" Ne egzamino mokiniu skacius"<<bMok.size()<< std::endl;
 
@@ -201,7 +201,7 @@ void splitbygrades(std::deque<gerasMokinys> & gMok, std::deque<blogasMokinys> &b
 //    generateStudentFile("f10000",10000);
 //    generateStudentFile("f100000",100000);
     auto end = std::chrono::steady_clock::now();
-    std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+    //std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
     std::vector<int> pazymiai{};
     int il{};
     std::string file{"f1"};
@@ -255,7 +255,7 @@ void splitbygrades(std::list<gerasMokinys> & gMok, std::list<blogasMokinys> &bMo
 //    generateStudentFile("f10000",10000);
 //    generateStudentFile("f100000",100000);
     auto end = std::chrono::steady_clock::now();
-    std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+   // std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
     std::vector<int> pazymiai{};
     int il{};
     std::string file{"f1"};

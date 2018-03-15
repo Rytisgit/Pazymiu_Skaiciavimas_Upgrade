@@ -14,17 +14,23 @@ int main()
 
         if (aORb()=='a'){
    // if (true){
+           // std::ios::sync_with_stdio(false);
+        std::list<gerasMokinys> listgMok;
+        std::list<blogasMokinys> listbMok;
 
         std::deque<gerasMokinys> dequegMok;
         std::deque<blogasMokinys> dequebMok;
-        splitbygrades(dequegMok,dequebMok);
-        splitbygrades(dequegMok,dequebMok);
-        std::list<gerasMokinys> listgMok;
-        std::list<blogasMokinys> listbMok;
-        splitbygrades(listgMok,listbMok);
+
         std::vector<gerasMokinys> gMok;
         std::vector<blogasMokinys> bMok;
+            std::cout<<"list times:\n";
+            splitbygrades(listgMok,listbMok);
+        std::cout<<"vector times:\n";
         splitbygrades(gMok,bMok);
+
+            std::cout<<"deque times:\n";
+        splitbygrades(dequegMok,dequebMok);
+
         }
 
 
