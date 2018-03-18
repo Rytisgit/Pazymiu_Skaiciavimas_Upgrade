@@ -1,6 +1,5 @@
 #include <chrono>
 #include "pazym.h"
-#include <deque>
 const std::string iveskite = {"Iveskite skaiciu tarp 1 ir 10"};
 const std::string baigti = {" - Baigti Ivesti\n"};
 const int exitnumber = {-1};
@@ -15,16 +14,20 @@ int main()
         if (aORb()=='a'){
    // if (true){
            // std::ios::sync_with_stdio(false);
-        std::list<gerasMokinys> listgMok;
-        std::list<blogasMokinys> listbMok;
-
-        std::deque<gerasMokinys> dequegMok;
-        std::deque<blogasMokinys> dequebMok;
-
-        std::vector<gerasMokinys> gMok;
-        std::vector<blogasMokinys> bMok;
-            std::cout<<"list times:\n";
-            splitbygrades(listgMok,listbMok);
+        std::list<greitasMokinys> listgMok;
+        std::list<greitasMokinys> listbMok;
+        std::deque<greitasMokinys> dequegMok;
+        std::deque<greitasMokinys> dequebMok;
+        std::vector<greitasMokinys> gMok;
+        std::vector<greitasMokinys> bMok;
+            listgMok.resize(50000);
+            listbMok.resize(70000);
+            dequebMok.resize(50000);
+            dequegMok.resize(70000);
+            gMok.resize(50000);
+            bMok.resize(70000);
+        std::cout<<"list times:\n";
+        splitbygrades(listgMok,listbMok);
         std::cout<<"vector times:\n";
         splitbygrades(gMok,bMok);
 
@@ -34,7 +37,7 @@ int main()
         }
 
 
-    else{
+        else{
         std::cout<<"Pasirinkimai: a - Skaityti is failo, b - 1 mokinio duomenu irasymas \n";
         if(aORb()=='a'){
             std::vector<mokinys> mok;
@@ -63,14 +66,10 @@ int main()
                 std::stringstream ss(str);
                 tokens.clear();
                 while (ss >> buf) {
-                  //  str.erase(remove_if(buf.begin(), buf.end(), isspace), buf.end());
                     tokens.push_back(buf);
                 }
                 tempmok.vardas = tokens[0];
                 tempmok.pavarde = tokens[1];
-    //            vardai.push_back(tokens[0]);
-    //            pavardes.push_back(tokens[1]);
-    //            index.push_back(pavardes.size()-1);
                 for (int i = 0; i < 5; i++)
                 {
                     std::stringstream s_str(tokens[i + 2]);
@@ -78,16 +77,11 @@ int main()
                     s_str >> il;
                     pazymiai.push_back(il);
                 }
-    //            egzaminas = (double)std::stoi(tokens[7]);
                 egzaminas = (double)atoi(tokens[7].c_str())*eweight;
                 tempmok.vidurkis =  weightedaverage(pazymiai) + egzaminas;
                 tempmok.medianas =  weightedmedian(pazymiai, pweight) + egzaminas;
                 mok.push_back(tempmok);
-    //            medianai.push_back( (double)weightedmedian(pazymiai) + egzaminas);
-    //            for (int j = 0; j < 5; ++j) {
-    //                std::cout<<pazymiai[j]<<" ";
-    //            }
-                //std::cout<<" "<<average(pazymiai)+egzaminas<<" "<<median(pazymiai)+egzaminas<<std::endl;
+
                 pazymiai.clear();
             }}
             catch (std::ifstream::failure &e){}
@@ -101,10 +95,6 @@ int main()
                 }
             }
             printf("%-15s%-15s%s\t%s\n" , "Pavarde","Vardas","Vidurkis","Medianas");
-    //		for (int i = 0; i < mok.size(); i++)
-    //		{
-    //			printf("%-15s%-15s%.2f\t%.2f\n", mok[i].pavarde.c_str(),mok[i].vardas.c_str(),mok[i].vidurkis,mok[i].medianas);
-    //		}
             for (auto const &it : mok)
             {
                 printf("%-15s%-15s%.2f\t%.2f\n", it.pavarde.c_str(),it.vardas.c_str(),it.vidurkis,it.medianas);

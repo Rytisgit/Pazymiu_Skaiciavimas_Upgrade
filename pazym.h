@@ -24,14 +24,11 @@ struct mokinys{
     double medianas{};
 };
 
-struct gerasMokinys{
+struct greitasMokinys{
     std::string pavarde{};
     std::string vardas{};
 };
-struct blogasMokinys{
-    std::string pavarde{};
-    std::string vardas{};
-};
+
 extern const std::string iveskite;
 extern const std::string baigti;
 extern const int exitnumber;
@@ -43,8 +40,8 @@ void grade (std::string ,std::string ,double ,double ,char );
 int getInput(int  , int , int exit = INT_MAX);
 char aORb();
 void generateStudentFile(std::string name,int length);
-void splitbygrades(std::vector<gerasMokinys>&,std::vector<blogasMokinys>&);
-void splitbygrades(std::deque<gerasMokinys>&,std::deque<blogasMokinys>&);
-void splitbygrades(std::list<gerasMokinys>&,std::list<blogasMokinys>&);
+void splitbygrades(std::vector<greitasMokinys>&,std::vector<greitasMokinys>&);
+void splitbygrades(std::deque<greitasMokinys>&,std::deque<greitasMokinys>&);
+void splitbygrades(std::list<greitasMokinys>&,std::list<greitasMokinys>&);
 
 #endif //PAZYMIAI_PAZYM_H

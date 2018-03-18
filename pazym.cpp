@@ -23,7 +23,7 @@ void grade (const std::string  vardas,const std::string pavarde,const double  pa
 }
 double weightedmedian(std::vector<int> & medi,const double weight)
 {
-    std::sort(medi.begin(), medi.end());     // sort temperatures
+    std::sort(medi.begin(), medi.end());     // sort
 
     int tmedian{};
     if (medi.size() % 2 == 0)           // even
@@ -35,11 +35,7 @@ double weightedmedian(std::vector<int> & medi,const double weight)
 }
  double weightedaverage(const std::vector<int> & temps, double weight)
 {
-    double sum{0};
-    for (double x : temps)
-        sum += x;
-
-    return weight * sum / temps.size();
+    return weight * std::accumulate(temps.begin(),temps.end(),0.0) / temps.size();
 }
  int getInput(const int  min, const int  max,const int  exit)
 {
@@ -80,24 +76,6 @@ double weightedmedian(std::vector<int> & medi,const double weight)
             else break;
         }
     } while (inputAsInt!=exit||exit!=INT_MAX);
-
-    /* int input{};
-     do
-     {
-         std::cin>>input;
-         if(input<min||input>max||std::cin.fail())
-         {
-             std::cout<<iveskite;
-             if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
-             else std::cout<<"\n";
-             //std::cin.clear();
-             // discard 'bad' character(s)
-             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-         }
-         else break;
-     }
-     while (input!=exit);
-     return input;*/
     std::cout<<"grazinam "<<inputAsInt;
     return inputAsInt;
 
@@ -138,24 +116,16 @@ void generateStudentFile(const std::string name, const int length) {
 
 }
 
-void splitbygrades(std::vector<gerasMokinys> &gMok, std::vector<blogasMokinys> &bMok) {
-    auto start = std::chrono::steady_clock::now();
-//    generateStudentFile("f10",10);
-//    generateStudentFile("f100",100);
-//    generateStudentFile("f1000",1000);
-//    generateStudentFile("f10000",10000);
-//    generateStudentFile("f100000",100000);
-    auto end = std::chrono::steady_clock::now();
-  //  std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+void splitbygrades(std::vector<greitasMokinys> &gMok, std::vector<greitasMokinys> &bMok) {
     std::vector<int> pazymiai{};
     int il{};
     std::string file{"f1"};
     std::string str{};
     std::string buf; // Have a buffer string
     std::vector<std::string> tokens; // Create vector to hold our words
-    gerasMokinys tempmok;
+    greitasMokinys tempmok;
     for (int i = 0; i < 5; ++i) {
-        start = std::chrono::steady_clock::now();
+        auto start = std::chrono::steady_clock::now();
         file+='0';
         std::ifstream f1(file);
         while(std::getline(f1, str)) { //read file until the end line by line
@@ -173,7 +143,7 @@ void splitbygrades(std::vector<gerasMokinys> &gMok, std::vector<blogasMokinys> &
 
             tempmok.vardas = tokens[0];
             tempmok.pavarde = tokens[1];
-            weightedaverage(pazymiai,1)<6 ? bMok.push_back({tempmok.vardas,tempmok.pavarde}) : gMok.push_back(tempmok);
+            weightedaverage(pazymiai,1)<6 ? bMok.push_back(tempmok) : gMok.push_back(tempmok);
 
             pazymiai.clear();
         }
@@ -187,30 +157,22 @@ void splitbygrades(std::vector<gerasMokinys> &gMok, std::vector<blogasMokinys> &
 //            {
 //                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
 //            }
-        end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now();
         std::cout <<file<< " Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds egzamino mokiniu skaicius " <<gMok.size() <<" Ne egzamino mokiniu skacius"<<bMok.size()<< std::endl;
 
     }
 }
 
-void splitbygrades(std::deque<gerasMokinys> & gMok, std::deque<blogasMokinys> &bMok) {
-    auto start = std::chrono::steady_clock::now();
-//    generateStudentFile("f10",10);
-//    generateStudentFile("f100",100);
-//    generateStudentFile("f1000",1000);
-//    generateStudentFile("f10000",10000);
-//    generateStudentFile("f100000",100000);
-    auto end = std::chrono::steady_clock::now();
-    //std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+void splitbygrades(std::deque<greitasMokinys> & gMok, std::deque<greitasMokinys> &bMok) {
     std::vector<int> pazymiai{};
     int il{};
     std::string file{"f1"};
     std::string str{};
     std::string buf; // Have a buffer string
     std::vector<std::string> tokens; // Create vector to hold our words
-    gerasMokinys tempmok;
+    greitasMokinys tempmok;
     for (int i = 0; i < 5; ++i) {
-        start = std::chrono::steady_clock::now();
+        auto start = std::chrono::steady_clock::now();
         file+='0';
         std::ifstream f1(file);
         while(std::getline(f1, str)) { //read file until the end line by line
@@ -228,7 +190,7 @@ void splitbygrades(std::deque<gerasMokinys> & gMok, std::deque<blogasMokinys> &b
 
             tempmok.vardas = tokens[0];
             tempmok.pavarde = tokens[1];
-            weightedaverage(pazymiai,1)<6 ? bMok.push_back({tempmok.vardas,tempmok.pavarde}) : gMok.push_back(tempmok);
+            weightedaverage(pazymiai,1)<6 ? bMok.push_back(tempmok) : gMok.push_back(tempmok);
 
             pazymiai.clear();
         }
@@ -242,29 +204,21 @@ void splitbygrades(std::deque<gerasMokinys> & gMok, std::deque<blogasMokinys> &b
 //            {
 //                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
 //            }
-        end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now();
         std::cout <<file<< " Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds egzamino mokiniu skaicius " <<gMok.size() <<" Ne egzamino mokiniu skacius"<<bMok.size()<< std::endl;
 
     }
 }
-void splitbygrades(std::list<gerasMokinys> & gMok, std::list<blogasMokinys> &bMok) {
-    auto start = std::chrono::steady_clock::now();
-//    generateStudentFile("f10",10);
-//    generateStudentFile("f100",100);
-//    generateStudentFile("f1000",1000);
-//    generateStudentFile("f10000",10000);
-//    generateStudentFile("f100000",100000);
-    auto end = std::chrono::steady_clock::now();
-   // std::cout << "Failu irasymo laikas " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+void splitbygrades(std::list<greitasMokinys> & gMok, std::list<greitasMokinys> &bMok) {
     std::vector<int> pazymiai{};
     int il{};
     std::string file{"f1"};
     std::string str{};
     std::string buf; // Have a buffer string
     std::vector<std::string> tokens; // Create vector to hold our words
-    gerasMokinys tempmok;
+    greitasMokinys tempmok;
     for (int i = 0; i < 5; ++i) {
-        start = std::chrono::steady_clock::now();
+        auto start = std::chrono::steady_clock::now();
         file+='0';
         std::ifstream f1(file);
         while(std::getline(f1, str)) { //read file until the end line by line
@@ -282,7 +236,7 @@ void splitbygrades(std::list<gerasMokinys> & gMok, std::list<blogasMokinys> &bMo
 
             tempmok.vardas = tokens[0];
             tempmok.pavarde = tokens[1];
-            weightedaverage(pazymiai,1)<6 ? bMok.push_back({tempmok.vardas,tempmok.pavarde}) : gMok.push_back(tempmok);
+            weightedaverage(pazymiai,1)<6 ? bMok.push_back(tempmok) : gMok.push_back(tempmok);
 
             pazymiai.clear();
         }
@@ -296,7 +250,7 @@ void splitbygrades(std::list<gerasMokinys> & gMok, std::list<blogasMokinys> &bMo
 //            {
 //                printf("%-15s%-15s\n", it.pavarde.c_str(),it.vardas.c_str());
 //            }
-        end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now();
         std::cout <<file<< " Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds egzamino mokiniu skaicius " <<gMok.size() <<" Ne egzamino mokiniu skacius"<<bMok.size()<< std::endl;
 
     }
