@@ -43,5 +43,6 @@ void generateStudentFile(std::string name,int length);
 void splitbygrades(std::vector<greitasMokinys>&,std::vector<greitasMokinys>&);
 void splitbygrades(std::deque<greitasMokinys>&,std::deque<greitasMokinys>&);
 void splitbygrades(std::list<greitasMokinys>&,std::list<greitasMokinys>&);
+void writetofile();
 
 #endif //PAZYMIAI_PAZYM_H

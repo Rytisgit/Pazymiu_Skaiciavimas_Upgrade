@@ -1,5 +1,6 @@
 #include <chrono>
 #include "pazym.h"
+#include "splibygrades.h"
 const std::string iveskite = {"Iveskite skaiciu tarp 1 ir 10"};
 const std::string baigti = {" - Baigti Ivesti\n"};
 const int exitnumber = {-1};
@@ -14,25 +15,35 @@ int main()
         if (aORb()=='a'){
    // if (true){
            // std::ios::sync_with_stdio(false);
-        std::list<greitasMokinys> listgMok;
-        std::list<greitasMokinys> listbMok;
-        std::deque<greitasMokinys> dequegMok;
-        std::deque<greitasMokinys> dequebMok;
-        std::vector<greitasMokinys> gMok;
-        std::vector<greitasMokinys> bMok;
-            listgMok.resize(50000);
-            listbMok.resize(70000);
-            dequebMok.resize(50000);
-            dequegMok.resize(70000);
-            gMok.resize(50000);
-            bMok.resize(70000);
-        std::cout<<"list times:\n";
-        splitbygrades(listgMok,listbMok);
-        std::cout<<"vector times:\n";
-        splitbygrades(gMok,bMok);
+            std::list<greitasMokinys> listgMok;
+            std::list<greitasMokinys> listbMok;
+            std::deque<greitasMokinys> dequegMok;
+            std::deque<greitasMokinys> dequebMok;
+            std::vector<greitasMokinys> gMok;
+            std::vector<greitasMokinys> bMok;
+            gMok.reserve(50000);
+            bMok.reserve(70000);
+
+            std::cout<<"list times:\n";
+            auto start = std::chrono::steady_clock::now();
+            splitbygrades2(listgMok,listbMok);
+            auto end = std::chrono::steady_clock::now();
+            std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+
+            //printarray(listgMok);
+
+            std::cout<<"vector times:\n";
+            splitbygrades(gMok,bMok);
+            start = std::chrono::steady_clock::now();
+
+            end = std::chrono::steady_clock::now();
+            std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds "<<std::endl;
 
             std::cout<<"deque times:\n";
-        splitbygrades(dequegMok,dequebMok);
+            start = std::chrono::steady_clock::now();
+            splitbygrades2(dequegMok,dequebMok);
+            end = std::chrono::steady_clock::now();
+            std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds" <<std::endl;
 
         }
 

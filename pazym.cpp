@@ -49,17 +49,20 @@ double weightedmedian(std::vector<int> & medi,const double weight)
     {
         std::getline(std::cin, theInput);
 
-        while(std::cin.fail() || std::cin.eof() || theInput.find_first_not_of("-0123456789") != std::string::npos) {
+        while(std::cin.fail() || std::cin.eof() ) {
 
-            if( theInput.find_first_not_of("-0123456789") == std::string::npos) {
-
+            if( theInput.find_first_not_of("0123456789-") != std::string::npos) {
+                std::cout<<"test";
                 std::cin.clear();
                 std::cin.ignore(256,'\n');
+                std::cout<<iveskite;
+                if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
+                else std::cout<<"\n";
+                std::getline(std::cin, theInput);
             }
-            std::cout<<iveskite;
-            if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
-            else std::cout<<"\n";
-            std::getline(std::cin, theInput);
+
+
+
         }
 
         // std::string::size_type st;
@@ -80,8 +83,7 @@ double weightedmedian(std::vector<int> & medi,const double weight)
     return inputAsInt;
 
 }
- char aORb()
-{
+ char aORb() {
     char choice{};
     do
     {
