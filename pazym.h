@@ -38,6 +38,7 @@ double weightedmedian(std::vector<int> &, double weight = 0.4);
 double weightedaverage(const std::vector<int> &, double weight = 0.4);
 void grade (std::string ,std::string ,double ,double ,char );
 int getInput(int  , int , int exit = INT_MAX);
+int getInput2(int  , int , int exit = INT_MAX);
 char aORb();
 void generateStudentFile(std::string name,int length);
 void splitbygrades(std::vector<greitasMokinys>&,std::vector<greitasMokinys>&);

@@ -125,7 +125,7 @@ int main()
             if (aORb() == 'b')  //random pazymiai
             {
                 std::cout << "Irasykite pazymiu kieki:";
-                int n = {getInput(1, 100)};
+                int n = {getInput2(1, 100)};
                 //Better random from http://www.pcg-random.org/posts/ease-of-use-without-loss-of-power.html
                 randutils::mt19937_rng rng;
                 for (int i = 0; i < n; ++i) {
@@ -137,15 +137,20 @@ int main()
             } else  // irasyti pazymius
             {
                 int n{};
-                std::cout << iveskite << " " << exitnumber << baigti;
+                std::cout<<iveskite;
+                std::cout<<" "<<exit<<baigti;
                 do {
-                    n = {getInput(1, 10, -1)};
+                    std::cin.clear();
+
+                    n = {getInput2(1, 10, -1)};
                     if (n == -1) {
-                        std::cout << "baigta rasyti pazymius\n";
+                        if(pazymiai.size()==0){std::cout<<"Iveskite bent 1 pazymi\n";n=0;}
+                        else{std::cout << "baigta rasyti pazymius\n";}
                     } else pazymiai.push_back(n);
-                } while (n != -1);
+
+                } while (n != -1 );
                 std::cout << "Irasykite Egzamino ivertinima\n";
-                egzaminas = {(double) getInput(1, 10) * eweight};
+                egzaminas = {(double) getInput2(1, 10) * eweight};
             }
 
             std::cout << "Pasirinkimai: a - Vidurkis, b - Medianas \n";
