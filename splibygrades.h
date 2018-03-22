@@ -60,4 +60,46 @@ void splitbygrades2(T & gMok, T &bMok) {
         }
     }
 }
+template <typename T,typename U>
+void splitbygrades2(T & gMok, T &bMok ,U &allMok) {
+
+    for (auto i = allMok.begin(),e=allMok.end(); i != e; ++i) {
+            weightedaverage(i->pazymiai,1) <6 ? bMok.push_back({i->pavarde,i->vardas}) : gMok.push_back({i->pavarde,i->vardas});
+        }
+    }
+
+template <typename U>
+void readToOne(U &allMok) {
+    std::vector<int> pazymiai{};
+    int il{};
+    std::string file{"f1"};
+    std::string str{};
+    std::string buf; // Have a buffer string
+    std::vector<std::string> tokens; // Create vector to hold our words
+    allMokinys tempmok;
+    for (int i = 0; i < 5; ++i) {
+        file+='0';
+        std::ifstream f1(file);
+        while(std::getline(f1, str)) { //read file until the end line by line
+
+            std::stringstream ss (str);
+            tokens.clear();
+            while (ss >> buf) {
+                tokens.push_back(buf);
+            }
+            for (int k = 0; k < 5; ++k) {
+                std::stringstream s_str(tokens[k + 2]);
+                s_str >> il;
+                pazymiai.push_back(il);
+            }
+            tempmok.vardas = tokens[0];
+            //a
+            // a std::cout<<tokens[0];
+            tempmok.pavarde = tokens[1];
+            tempmok.pazymiai=pazymiai;
+            allMok.push_back(tempmok);
+            pazymiai.clear();
+        }
+    }
+}
 #endif //PAZYMIAI_SPLIBYGRADES_H

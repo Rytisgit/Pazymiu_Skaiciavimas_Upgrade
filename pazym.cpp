@@ -41,46 +41,34 @@ int getInput2(const int min, const int max, const int exit){
     int x{};
     std::string a{};
     bool loop=true;
-    std::stringstream stream;
-//    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     std::cin.clear();
- //   std::getline(std::cin, a);
     while(loop)
     {
-//        while(std::cin.fail() || std::cin.eof() ) {
-//        }
-        std::cout<<"test";
         std::string s;
-
-        if(std::getline(std::cin, s)){stream.str(s);std::cin.clear();}
-        s.clear();
+        std::getline(std::cin, s);
+        std::stringstream stream(s);
         if(stream >> x)
         {
             if(stream>>a ){
-                std::cout<<"test";
-                std::cout<<iveskite;
+                std::cout<<error<<iveskite;
                 if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
                 else std::cout<<std::endl;
                 continue;}
             else if(x==exit || (x>=min&&x<=max)){
-                std::cout<<"test2";
                 loop=false;}
             else{
-                std::cout<<"test4";
-                std::cout<<iveskite;
+                std::cout<<error<<iveskite;
                 if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
                 else std::cout<<std::endl;}
 
         }
         else{
-            std::cout<<iveskite;
+            std::cout<<error<<iveskite;
             if(exit!=INT_MAX)std::cout<<" "<<exit<<baigti;
             else std::cout<<std::endl;}
-       // if(!loop)break;
-      //  std::cout << "Invalid!" << std::endl;
     }
-
-    std::cout<<"grazinam "<<x;
+//    std::cout<<"grazinam "<<x<<std::endl;
     return x;
 }
  int getInput(const int  min, const int  max,const int  exit)

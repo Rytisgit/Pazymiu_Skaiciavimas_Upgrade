@@ -28,9 +28,15 @@ struct greitasMokinys{
     std::string pavarde{};
     std::string vardas{};
 };
+struct allMokinys{
+    std::string pavarde{};
+    std::string vardas{};
+    std::vector<int> pazymiai;
+};
 
 extern const std::string iveskite;
 extern const std::string baigti;
+extern const std::string error;
 extern const int exitnumber;
 extern const double eweight;
 extern const double pweight;

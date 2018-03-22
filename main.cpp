@@ -3,7 +3,8 @@
 #include "splibygrades.h"
 const std::string iveskite = {"Iveskite skaiciu tarp 1 ir 10"};
 const std::string baigti = {" - Baigti Ivesti\n"};
-const int exitnumber = {-1};
+const std::string error = {"Klaida, "};
+const int exitnumber = -1;
 const double eweight = {0.6};
 const double pweight = {0.4};
 
@@ -17,25 +18,29 @@ int main()
            // std::ios::sync_with_stdio(false);
             std::list<greitasMokinys> listgMok;
             std::list<greitasMokinys> listbMok;
+            std::list<allMokinys> listallMok;
             std::deque<greitasMokinys> dequegMok;
             std::deque<greitasMokinys> dequebMok;
+            std::deque<allMokinys> dequeallMok;
             std::vector<greitasMokinys> gMok;
             std::vector<greitasMokinys> bMok;
+            std::vector<allMokinys> allMok;
             gMok.reserve(50000);
             bMok.reserve(70000);
-
+            allMok.reserve(100000);
             std::cout<<"list times:\n";
             auto start = std::chrono::steady_clock::now();
-            splitbygrades2(listgMok,listbMok);
+//            splitbygrades2(listgMok,listbMok);
+            readToOne(listallMok);
+            splitbygrades2(listgMok,listbMok,listallMok);
             auto end = std::chrono::steady_clock::now();
             std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
 
-            //printarray(listgMok);
+//            printarray(listgMok);
 
             std::cout<<"vector times:\n";
-            splitbygrades(gMok,bMok);
             start = std::chrono::steady_clock::now();
-
+            splitbygrades2(gMok,bMok);
             end = std::chrono::steady_clock::now();
             std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds "<<std::endl;
 
