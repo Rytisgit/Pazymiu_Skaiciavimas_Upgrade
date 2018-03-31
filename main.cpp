@@ -19,36 +19,54 @@ int main()
             std::list<greitasMokinys> listgMok;
             std::list<greitasMokinys> listbMok;
             std::list<allMokinys> listallMok;
+            std::list<allMokinys> listlessMok;
             std::deque<greitasMokinys> dequegMok;
             std::deque<greitasMokinys> dequebMok;
             std::deque<allMokinys> dequeallMok;
+            std::deque<allMokinys> dequelessMok;
             std::vector<greitasMokinys> gMok;
             std::vector<greitasMokinys> bMok;
             std::vector<allMokinys> allMok;
+            std::vector<allMokinys> lessMok;
             gMok.reserve(50000);
             bMok.reserve(70000);
             allMok.reserve(100000);
+            //lessMok.reserve(70000);
             std::cout<<"list times:\n";
             auto start = std::chrono::steady_clock::now();
 //            splitbygrades2(listgMok,listbMok);
             readToOne(listallMok);
-            splitbygrades2(listgMok,listbMok,listallMok);
-            auto end = std::chrono::steady_clock::now();
-            std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+//            splitbygrades2(listgMok,listbMok,listallMok);
+
+              splitbygrades3(listlessMok,listallMok,test);
+               auto end = std::chrono::steady_clock::now();
+                std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
+
+            std::cout<<listallMok.size()<<" <- alllmok "<<listlessMok.size()<<" <-lessmiok\n";
+
 
 //            printarray(listgMok);
 
             std::cout<<"vector times:\n";
             start = std::chrono::steady_clock::now();
-            splitbygrades2(gMok,bMok);
+
+//            splitbygrades2(gMok,bMok);
+            readToOne(allMok);
+            splitbygrades3(lessMok,allMok,test);
+            std::cout<<allMok.size()<<" <- alllmok "<<lessMok.size()<<" <-lessmiok\n";
+
             end = std::chrono::steady_clock::now();
             std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds "<<std::endl;
 
             std::cout<<"deque times:\n";
             start = std::chrono::steady_clock::now();
-            splitbygrades2(dequegMok,dequebMok);
+            readToOne(dequeallMok);
+            splitbygrades3(dequelessMok,dequeallMok,test);
+//            splitbygrades2(dequegMok,dequebMok);
             end = std::chrono::steady_clock::now();
             std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds" <<std::endl;
+           dequelessMok.push_back({});
+            std::cout<<dequeallMok.size()<<" <- alllmok "<<dequelessMok.size()<<" <-lessmiok\n";
 
         }
 
