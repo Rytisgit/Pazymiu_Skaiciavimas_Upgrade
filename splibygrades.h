@@ -109,8 +109,8 @@ __remove_copy_if_done_right(_ForwardIterator __first, _ForwardIterator __last, _
 
 template <typename iterator,typename container,typename T>
 void splitErasebyRange(container & lessMok,iterator &allMok,T pred,std::string filename) {
-    readToOne(allMok,filename);Timer timer;
-
+    Timer timer;
+    readToOne(allMok,filename);
     allMok.erase (
             remove_copy_if_done_right(
                     allMok.begin(),
@@ -122,8 +122,8 @@ void splitErasebyRange(container & lessMok,iterator &allMok,T pred,std::string f
 }
 template <typename T,typename U>
 void splitLeaveTwoCopies(T & gMok, T &bMok ,U &allMok,std::string filename) {
-    readToOne(allMok,filename);Timer timer;
-
+    Timer timer;
+    readToOne(allMok,filename);
     for (auto i = allMok.begin(),e=allMok.end(); i != e; ++i) {
             weightedaverage(i->pazymiai,1) <6
             ? bMok.push_back({i->pavarde,i->vardas})
@@ -132,8 +132,8 @@ void splitLeaveTwoCopies(T & gMok, T &bMok ,U &allMok,std::string filename) {
     }
 template <typename iterator,typename container,typename T>
 void splitEraseOneByOne(container & lessMok,iterator &allMok,T pred,std::string filename) {
-    readToOne(allMok,filename);
     Timer timer;
+    readToOne(allMok,filename);
     auto split = std::partition(allMok.begin(),allMok.end(),pred);
     auto it = allMok.end();
     --it;
