@@ -19,53 +19,53 @@ struct Timer{
     }
     ~Timer(){
         end =  std::chrono::steady_clock::now();
-        std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
-
+        std::cout<<(double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000<<" ";
     }
 };
+bool test(const allMokinys &Mok) {
+    return (weightedaverage(Mok.pazymiai,1) > 6);
+}
+template <typename U>
+void readToOne(U &allMok,std::string filename) {
+    std::string str{};
+    std::vector<std::string> tokens;
+    std::ifstream f1(filename);
+    while(std::getline(f1, str)) { //read file until the end line by line
+        std::istringstream ss (str);
+        tokens.clear();
+        while (ss >> str) {
+            tokens.push_back(str);
+        }
+        allMok.push_back({tokens[0],tokens[1],{std::stoi(tokens[2]),std::stoi(tokens[3]),std::stoi(tokens[4]),std::stoi(tokens[5]),std::stoi(tokens[6])}});
+    }
+}
+
 
 template <typename T>
-void printarray(const T &gMok){
-    for (typename T::const_iterator i=gMok.begin(); i!=gMok.end(); ++i)
+void printarray(const T &Mok){
+//    sortIt(Mok,pavTest);
+    for (typename T::const_iterator i=Mok.begin(); i!=Mok.end(); ++i)
     {
+
         printf("%-15s%-15s\n", (i->pavarde).c_str(),(i->vardas).c_str());
     }
 
 }
 template <typename T>
-void splitbygrades2(T & gMok, T &bMok) {
-    std::vector<int> pazymiai{};
-    int il{};
-    std::string file{"f1"};
+void splitWhileReading(T & gMok, T &bMok, std::string filename) {
+    Timer timer;
     std::string str{};
-    std::string buf; // Have a buffer string
-    std::vector<std::string> tokens; // Create vector to hold our words
-    greitasMokinys tempmok;
-    for (int i = 0; i < 5; ++i) {
-        file+='0';
-        std::ifstream f1(file);
-        while(std::getline(f1, str)) { //read file until the end line by line
-
-            std::stringstream ss (str);
-            tokens.clear();
-            while (ss >> buf) {
-                tokens.push_back(buf);
-            }
-            for (int k = 0; k < 5; ++k) {
-                std::stringstream s_str(tokens[k + 2]);
-                s_str >> il;
-                pazymiai.push_back(il);
-            }
-            tempmok.vardas = tokens[0];
-          //a
-            // a std::cout<<tokens[0];
-            tempmok.pavarde = tokens[1];
-            weightedaverage(pazymiai,1)>6 ? bMok.push_back(tempmok) : gMok.push_back(tempmok);
-            pazymiai.clear();
-        }
+    std::vector<std::string> word;
+    std::ifstream f1(filename);
+    while (std::getline(f1, str)) { //read file until the end line by line
+        std::istringstream ss(str);
+        while (ss >> str)  word.push_back(str);
+        weightedaverage({std::stoi(word[2]), std::stoi(word[3]), std::stoi(word[4]), std::stoi(word[5]), std::stoi(word[6])}, 1) < 6
+        ? bMok.push_back({word[0], word[1]})
+        : gMok.push_back({word[0], word[1]});
+        word.clear();
     }
 }
-
 
 template<typename _ForwardIterator,typename _Output, typename _Predicate>
 inline _ForwardIterator
@@ -105,12 +105,12 @@ __remove_copy_if_done_right(_ForwardIterator __first, _ForwardIterator __last, _
     return __result;
 }
 
-bool test(const allMokinys &Mok) {
-    return (weightedaverage(Mok.pazymiai,1) > 6);
-}
+
 
 template <typename iterator,typename container,typename T>
-void splitbygrades3(container & lessMok,iterator &allMok,T pred) {
+void splitErasebyRange(container & lessMok,iterator &allMok,T pred,std::string filename) {
+    readToOne(allMok,filename);Timer timer;
+
     allMok.erase (
             remove_copy_if_done_right(
                     allMok.begin(),
@@ -121,7 +121,8 @@ void splitbygrades3(container & lessMok,iterator &allMok,T pred) {
     );
 }
 template <typename T,typename U>
-void splitbygrades2(T & gMok, T &bMok ,U &allMok) {
+void splitLeaveTwoCopies(T & gMok, T &bMok ,U &allMok,std::string filename) {
+    readToOne(allMok,filename);Timer timer;
 
     for (auto i = allMok.begin(),e=allMok.end(); i != e; ++i) {
             weightedaverage(i->pazymiai,1) <6
@@ -129,29 +130,59 @@ void splitbygrades2(T & gMok, T &bMok ,U &allMok) {
             : gMok.push_back({i->pavarde,i->vardas});
         }
     }
-
-
-template <typename U>
-void readToOne(U &allMok) {
-    std::vector<int> pazymiai{};
-    std::string file{"f1"};
-    std::string str{};
-    std::vector<std::string> tokens;
-    for (int i = 0; i < 5; ++i) {
-        file+='0';
-        std::ifstream f1(file);
-        while(std::getline(f1, str)) { //read file until the end line by line
-            std::istringstream ss (str);
-            tokens.clear();
-            while (ss >> str) {
-                tokens.push_back(str);
-            }
-            for (int k = 0; k < 5; ++k) {
-                pazymiai.push_back(std::stoi(tokens[k+2]));
-            }
-            allMok.push_back({tokens[0],tokens[1],pazymiai});
-            pazymiai.clear();
-        }
+template <typename iterator,typename container,typename T>
+void splitEraseOneByOne(container & lessMok,iterator &allMok,T pred,std::string filename) {
+    readToOne(allMok,filename);
+    Timer timer;
+    auto split = std::partition(allMok.begin(),allMok.end(),pred);
+    auto it = allMok.end();
+    --it;
+    for (; it !=split ; --it) {
+        lessMok.push_back(*it);
+        allMok.pop_back();
     }
+
 }
+
+
+template <typename greitas, typename pilnas>
+void testing(greitas &geri,greitas &blogi,pilnas &visi, pilnas &maziau,std::string filename){
+    std::cout<<"1: ";splitWhileReading(geri,blogi,filename);std::cout<<" s\t";
+    geri.clear();blogi.clear();
+    std::cout<<"2: ";splitLeaveTwoCopies(geri,blogi,visi,filename);std::cout<<" s\t";
+    geri.clear();blogi.clear();visi.clear();
+    std::cout<<"3: ";splitErasebyRange(maziau,visi,test,filename);std::cout<<" s\t";
+    maziau.clear();visi.clear();
+    std::cout<<"4: ";splitEraseOneByOne(maziau,visi,test,filename);std::cout<<" s\t\n";
+    std::cout<<maziau.size()<<" <- maziau "<<visi.size()<<" <-visi\n";
+    maziau.clear();visi.clear();
+};
 #endif //PAZYMIAI_SPLIBYGRADES_H
+//template<typename T>
+//struct pavTest
+//{
+//bool operator()(const T &Mok,const T &prevMok) {
+//    return (Mok.pavarde > prevMok.pavarde);
+//}
+//};
+
+//bool pavTest(const greitasMokinys &Mok,const greitasMokinys &prevMok) {
+//    return (Mok.pavarde > prevMok.pavarde);
+//}
+//bool pavTest(const allMokinys &Mok,const allMokinys &prevMok) {
+//    return (Mok.pavarde > prevMok.pavarde);
+//}
+
+//template <typename test,typename T,
+//        typename std::enable_if<!std::is_same<test,std::list<greitasMokinys>>::value && !std::is_same<test,std::list<allMokinys>>::value>::type >
+//void sortIt(test &notList,T pavTest){
+//    std::sort(notList.begin(),notList.end(),pavTest);
+//}
+//template <typename T>
+//void sortIt(std::list<greitasMokinys> &list,T pavTest){
+//    list.sort(pavTest);
+//}
+//template <typename T>
+//void sortIt(std::list<allMokinys> &list,T pavTest){
+//    list.sort(pavTest);
+//}

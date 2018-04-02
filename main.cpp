@@ -14,8 +14,6 @@ int main()
     std::cout<<"Pasirinkimai: a - stress, b - normalus veikimas \n";
 
         if (aORb()=='a'){
-   // if (true){
-           // std::ios::sync_with_stdio(false);
             std::list<greitasMokinys> listgMok;
             std::list<greitasMokinys> listbMok;
             std::list<allMokinys> listallMok;
@@ -31,43 +29,22 @@ int main()
             gMok.reserve(50000);
             bMok.reserve(70000);
             allMok.reserve(100000);
-            //lessMok.reserve(70000);
-            std::cout<<"list times:\n";
-            auto start = std::chrono::steady_clock::now();
-//            splitbygrades2(listgMok,listbMok);
-            readToOne(listallMok);
-//            splitbygrades2(listgMok,listbMok,listallMok);
-
-              splitbygrades3(listlessMok,listallMok,test);
-               auto end = std::chrono::steady_clock::now();
-                std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds"<< std::endl;
-
-            std::cout<<listallMok.size()<<" <- alllmok "<<listlessMok.size()<<" <-lessmiok\n";
-
-
-//            printarray(listgMok);
-
-            std::cout<<"vector times:\n";
-            start = std::chrono::steady_clock::now();
-
-//            splitbygrades2(gMok,bMok);
-            readToOne(allMok);
-            splitbygrades3(lessMok,allMok,test);
-            std::cout<<allMok.size()<<" <- alllmok "<<lessMok.size()<<" <-lessmiok\n";
-
-            end = std::chrono::steady_clock::now();
-            std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds "<<std::endl;
-
-            std::cout<<"deque times:\n";
-            start = std::chrono::steady_clock::now();
-            readToOne(dequeallMok);
-            splitbygrades3(dequelessMok,dequeallMok,test);
-//            splitbygrades2(dequegMok,dequebMok);
-            end = std::chrono::steady_clock::now();
-            std::cout <<"Time is " << (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000 << " seconds" <<std::endl;
-           dequelessMok.push_back({});
-            std::cout<<dequeallMok.size()<<" <- alllmok "<<dequelessMok.size()<<" <-lessmiok\n";
-
+            lessMok.reserve(70000);
+            std::string filenames= "f10";
+            //generateStudentFile("fmil",1000000);
+//            std::cout<<"list times:\n";
+//            splitWhileReading(listgMok,listbMok,"f100000");
+            for (int i = 0; i <4; ++i) {
+                filenames+="0";
+                std::cout<<std::endl<<filenames<<std::endl;
+                std::cout<<std::endl<<"Vector"<<std::endl;
+                testing(gMok,bMok,allMok,lessMok,filenames);
+                std::cout<<std::endl<<"List"<<std::endl;
+                testing(listgMok,listbMok,listallMok,listlessMok,filenames);
+                std::cout<<std::endl<<"Deque"<<std::endl;
+                testing(dequegMok,dequebMok,dequeallMok,dequelessMok,filenames);
+            }
+       //  std::cout<<listgMok.size()<<" <- gmok "<<listbMok.size()<<" <-bmok\n";
         }
 
 
