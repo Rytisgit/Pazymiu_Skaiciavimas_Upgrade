@@ -32,11 +32,20 @@ int main()
             lessMok.reserve(70000);
             std::string filenames= "f10";
 
-//            generateStudentFile("f100",100);
-//            generateStudentFile("f1000",1000);
-//            generateStudentFile("f10000",10000);
-//            generateStudentFile("f100000",100000);
-
+            std::ifstream f1;
+            try {
+                f1.open (filenames);
+                std::string buf;
+                std::getline(f1, buf);
+                f1.seekg(0, std::ios::beg);
+            }
+            catch (std::ifstream::failure &e){
+                generateStudentFile("f100",100);
+                generateStudentFile("f100",100);
+                generateStudentFile("f1000",1000);
+                generateStudentFile("f10000",10000);
+                generateStudentFile("f100000",100000);
+            }
             for (int i = 0; i <4; ++i) {
                 filenames+="0";
                 std::cout<<std::endl<<filenames<<std::endl;
