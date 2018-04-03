@@ -24,7 +24,7 @@ It also can read from files for mass grading and sorting
 ```./main```
 ###### Otherwise Import the project into a cmake compatible ide or if thats not possible set it up by hand
 
-## interface
+## Interface
 The program is navigated by selecting a or b. It also asks for input of names of students or their marks when necessary
 
 ## Functions for reading and sorting
