@@ -16,7 +16,16 @@ It also can read from files for mass grading and sorting
 
 ```make ```
 
-##### On windows Import the project into a cmake compatible ide or set it up by hand
+##### On windows if compiler and cmake tools are installed:
+```cd {source directory}```
+
+```g++ -std=c++11 *.cpp -o main```
+
+```./main```
+###### Otherwise Import the project into a cmake compatible ide or if thats not possible set it up by hand
+
+## interface
+The program is navigated by selecting a or b.
 
 ## Functions for reading and sorting
 ### readToOne()
