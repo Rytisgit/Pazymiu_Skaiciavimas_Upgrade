@@ -27,7 +27,7 @@ Name | Surname | Mark 1 | Mark 2| Mark 3 | Mark 4 | Mark 5
 
 it reads it to a string by getline then stringstream splits into words which are used to fill a student file, std::stoi() is used to convert marks to integers.
 ### splitWhileReading()
-The function reads by the same mether as readToOne, but after every line it calls the average function to decide into which container to put in the students data, sorting it.
+The function reads by the same method as readToOne, but after every line it calls the average function to decide into which container to put in the students data, sorting it.
 ### splitErasebyRange()
 Calls readToOne(), then remove_copy_if_done_right() which is remove_copy_if and remove_if combined to both sort the containers items by predicate and copy over items which are not to be left in that container, then container.erase is called to free up space which was made from this operation in the first container
 ### splitLeaveTwoCopies()
@@ -70,7 +70,7 @@ This is a function for the second strategy outlined in the guide
 - readToOne -  New funtion to read from file into a single container to then be manipulated
  - Testing funtion to track times of reading to all types of containers of all sizes of files
 ### Changes
-- Imporved GetInput should no longer fail on a faulty input of a number followed by letters when only a number is asked (for input of  "1a" would accept the 1 then throw a message as if it was rejected)
+- Improved GetInput should no longer fail on a faulty input of a number followed by letters when only a number is asked (for input of  "1a" would accept the 1 then throw a message as if it was rejected)
  - improved splitbygrades() , renamed to splitWhileReading()
 ### Changelog v0.5.1
 #### Added
@@ -82,7 +82,7 @@ This is a function for the second strategy outlined in the guide
  - This data is read and stored into 2 vectors of student structs 1 for passing grades, the other not
  - Timing with these actions with <chrono>
  ### Removed
-  -Unnedcesarry files from project
+  -Unnecesarry files from project
 ### Changelog v0.3.1
 #### Added
  ##### Header and secondary source file
