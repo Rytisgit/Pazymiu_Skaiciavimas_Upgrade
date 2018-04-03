@@ -31,9 +31,12 @@ int main()
             allMok.reserve(100000);
             lessMok.reserve(70000);
             std::string filenames= "f10";
-            //generateStudentFile("fmil",1000000);
-//            std::cout<<"list times:\n";
-//            splitWhileReading(listgMok,listbMok,"f100000");
+
+//            generateStudentFile("f100",100);
+//            generateStudentFile("f1000",1000);
+//            generateStudentFile("f10000",10000);
+//            generateStudentFile("f100000",100000);
+
             for (int i = 0; i <4; ++i) {
                 filenames+="0";
                 std::cout<<std::endl<<filenames<<std::endl;

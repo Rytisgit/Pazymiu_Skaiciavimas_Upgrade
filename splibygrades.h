@@ -23,7 +23,7 @@ struct Timer{
     }
 };
 bool test(const allMokinys &Mok) {
-    return (weightedaverage(Mok.pazymiai,1) > 6);
+    return (weightedaverage(Mok.pazymiai,1) < 6);
 }
 template <typename U>
 void readToOne(U &allMok,std::string filename) {
