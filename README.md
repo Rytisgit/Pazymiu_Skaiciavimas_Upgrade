@@ -1,3 +1,17 @@
+# Vertinimo komentarai
+
+Pastabos:
+
+1. Darė daugiau negu užduotys prašė, į strategijas įkorporavo algoritmus, todėl laikai gavosi panašūs (bet labai maži).
+
+Privalumai:
+
+1. Visur su Templeitais
+2. Pats prisiderino `remove_if` prie savo konteksto
+3. Savo splitinimo strategiją sugalvojo
+4. Veikia labai greitai
+
+
 # Pazymiu_Skaiciavimas
 
 ## Description
