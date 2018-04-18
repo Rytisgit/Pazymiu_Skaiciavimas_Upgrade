@@ -8,7 +8,7 @@ SET(GCC_COVERAGE_COMPILE_FLAGS "-O2 -fopenmp")
 
 add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
 
-set(SOURCE_FILES main.cpp randutils.hpp pazym.cpp pazym.h splibygrades.h)
+set(SOURCE_FILES main.cpp randutils.hpp pazym.cpp pazym.h splibygrades.h splitbygradesclass.cpp splitbygradesclass.h)
 
 add_executable(pazymiai ${SOURCE_FILES})
 add_executable (masyvai masyvai.cpp randutils.hpp)
