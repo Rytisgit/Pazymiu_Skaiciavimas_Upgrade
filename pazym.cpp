@@ -4,6 +4,7 @@
 
 
 #include "pazym.h"
+#include "calculation.h"
 
 void grade (const std::string  vardas,const std::string pavarde,const double  pazymiaiapdoroti,const double weightedegzaminas,const char choice)
 {
@@ -21,21 +22,24 @@ void grade (const std::string  vardas,const std::string pavarde,const double  pa
         printf("%.2f\n", galutinisPazymis);
     }
 }
-double weightedmedian(std::vector<int> & medi,const double weight)
-{
-    std::sort(medi.begin(), medi.end());     // sort
-
-    int tmedian{};
-    if (medi.size() % 2 == 0)           // even
-        tmedian = (medi[medi.size() / 2 - 1] + medi[medi.size() / 2]) / 2;
-    else                                // odd
-        tmedian = medi[medi.size() / 2];
-
-    return weight * tmedian;
-}
- double weightedaverage(const std::vector<int> & temps, double weight)
-{
-    return weight * std::accumulate(temps.begin(),temps.end(),0.0) / temps.size();
+void Checkforfiles(const std::string &filenames) {
+    std::ifstream f1;
+    f1.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+    try {
+        f1.open (filenames);
+        std::__cxx11::string buf;
+        getline(f1, buf);
+        f1.seekg(0, std::ios_base::beg);
+    }
+    catch (std::ios_base::failure &e){
+        std::cout<<"Student files not found, generating new files...\n";
+        generateStudentFile("f10",10);
+        generateStudentFile("f100",100);
+        generateStudentFile("f1000",1000);
+        generateStudentFile("f10000",10000);
+        generateStudentFile("f100000",100000);
+        std::cout<<"Done.\n";
+    }
 }
 int getInput2(const int min, const int max, const int exit){
     int x{};
