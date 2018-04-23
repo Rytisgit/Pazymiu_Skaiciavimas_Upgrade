@@ -11,6 +11,7 @@
 #include <fstream>
 #include <numeric>
 #include "pazym.h"
+#include "splitbygradesclass.h"
 
 
 struct Timer{
@@ -23,9 +24,6 @@ struct Timer{
         std::cout<<(double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000<<" ";
     }
 };
-bool test(const allMokinys &Mok) {
-    return (weightedaverage(Mok.pazymiai,1) < 6);
-}
 template <typename U>
 void readToOne(U &allMok,std::string filename) {
     std::string str{};
@@ -126,9 +124,9 @@ void splitLeaveTwoCopies(T & gMok, T &bMok ,U &allMok,std::string filename) {
     Timer timer;
     readToOne(allMok,filename);
     for (auto i = allMok.begin(),e=allMok.end(); i != e; ++i) {
-            weightedaverage(i->pazymiai,1) <6
-            ? bMok.push_back({i->pavarde,i->vardas})
-            : gMok.push_back({i->pavarde,i->vardas});
+            i->galBalas() <6
+            ? bMok.push_back({i->getpavarde(),i->getvardas()})
+            : gMok.push_back({i->getpavarde(),i->getvardas()});
         }
     }
 template <typename iterator,typename container,typename T>

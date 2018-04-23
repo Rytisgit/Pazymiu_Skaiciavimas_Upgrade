@@ -8,44 +8,34 @@ const int exitnumber = -1;
 const double eweight = {0.6};
 const double pweight = {0.4};
 
-
 int main()
 {
     std::cout<<"Pasirinkimai: a - stress, b - normalus veikimas \n";
 
         if (aORb()=='a'){
-            std::list<greitasMokinys> listgMok;
-            std::list<greitasMokinys> listbMok;
-            std::list<allMokinys> listallMok;
-            std::list<allMokinys> listlessMok;
-            std::deque<greitasMokinys> dequegMok;
-            std::deque<greitasMokinys> dequebMok;
-            std::deque<allMokinys> dequeallMok;
-            std::deque<allMokinys> dequelessMok;
-            std::vector<greitasMokinys> gMok;
-            std::vector<greitasMokinys> bMok;
-            std::vector<allMokinys> allMok;
-            std::vector<allMokinys> lessMok;
+            std::list<studentClass> listgMok;
+            std::list<studentClass> listbMok;
+            std::list<studentClass> listallMok;
+            std::list<studentClass> listlessMok;
+            std::deque<studentClass> dequegMok;
+            std::deque<studentClass> dequebMok;
+            std::deque<studentClass> dequeallMok;
+            std::deque<studentClass> dequelessMok;
+            std::vector<studentClass> gMok;
+            std::vector<studentClass> bMok;
+            std::vector<studentClass> allMok;
+            std::vector<studentClass> lessMok;
+            std::vector<studentClass> classMok;
+            //studentClass a = {"a","bv"};
+            //classMok.push_back(a);
+           // std::cout<<classMok[0].getvardas()<<classMok[0].getpavarde()<<classMok[0].galBalas();
+
             gMok.reserve(50000);
             bMok.reserve(70000);
             allMok.reserve(100000);
             lessMok.reserve(70000);
             std::string filenames= "f10";
-
-            std::ifstream f1;
-            try {
-                f1.open (filenames);
-                std::string buf;
-                std::getline(f1, buf);
-                f1.seekg(0, std::ios::beg);
-            }
-            catch (std::ifstream::failure &e){
-                generateStudentFile("f100",100);
-                generateStudentFile("f100",100);
-                generateStudentFile("f1000",1000);
-                generateStudentFile("f10000",10000);
-                generateStudentFile("f100000",100000);
-            }
+            Checkforfiles(filenames);
             for (int i = 0; i <4; ++i) {
                 filenames+="0";
                 std::cout<<std::endl<<filenames<<std::endl;
@@ -56,7 +46,7 @@ int main()
                 std::cout<<std::endl<<"Deque"<<std::endl;
                 testing(dequegMok,dequebMok,dequeallMok,dequelessMok,filenames);
             }
-       //  std::cout<<listgMok.size()<<" <- gmok "<<listbMok.size()<<" <-bmok\n";
+       //  std::cout<<listgMok.size()<<" <- gmok "<<listbMok.size()<<" <-bmok\n";*/
         }
 
 
@@ -65,7 +55,6 @@ int main()
         if(aORb()=='a'){
             std::vector<mokinys> mok;
             std::vector<int> pazymiai{};
-            int index{0};
             double egzaminas{};
             std::ifstream f1;
             f1.exceptions ( std::ifstream::failbit | std::ifstream::badbit );
@@ -82,7 +71,7 @@ int main()
             std::string str{};
             std::string buf; // Have a buffer string
             std::vector<std::string> tokens; // Create vector to hold our words
-            std::string tempstring; int temp{};
+            std::string tempstring;
             mokinys tempmok;
             try {
             while(std::getline(f1, str)) {
@@ -156,7 +145,7 @@ int main()
 
                     n = {getInput2(1, 10, -1)};
                     if (n == -1) {
-                        if(pazymiai.size()==0){std::cout<<"Iveskite bent 1 pazymi\n";n=0;}
+                        if(pazymiai.empty()){std::cout<<"Iveskite bent 1 pazymi\n";n=0;}
                         else{std::cout << "baigta rasyti pazymius\n";}
                     } else pazymiai.push_back(n);
 
@@ -173,3 +162,5 @@ int main()
 
 	} return 0;
 }
+
+
