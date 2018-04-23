@@ -1,0 +1,62 @@
+C:\Users\SuperPC\Desktop\Pazymiu_skaiciavimas_upgrade\Pazymiu_Skaiciavimas\cmake-build-debug\pazymiai.exe
+Pasirinkimai: a - stress, b - normalus veikimas
+a
+a
+
+f100
+
+Vector
+1: 0.00179038  s        2: 0.00132511  s        3: 0.00137585  s        4: 0.00135977  s
+35 <- maziau 65 <-visi
+
+List
+1: 0.000979621  s       2: 0.00134951  s        3: 0.00158048  s        4: 0.00150617  s
+35 <- maziau 65 <-visi
+
+Deque
+1: 0.00100457  s        2: 0.00128906  s        3: 0.00142188  s        4: 0.00146596  s
+35 <- maziau 65 <-visi
+
+f1000
+
+Vector
+1: 0.00878414  s        2: 0.0122265  s 3: 0.0131734  s 4: 0.0125632  s
+396 <- maziau 604 <-visi
+
+List
+1: 0.00860862  s        2: 0.012135  s  3: 0.0137249  s 4: 0.0134471  s
+396 <- maziau 604 <-visi
+
+Deque
+1: 0.00844836  s        2: 0.0120629  s 3: 0.0128612  s 4: 0.0128041  s
+396 <- maziau 604 <-visi
+
+f10000
+
+Vector
+1: 0.0847018  s 2: 0.120216  s  3: 0.130009  s  4: 0.125272  s
+3851 <- maziau 6149 <-visi
+
+List
+1: 0.087466  s  2: 0.132415  s  3: 0.144086  s  4: 0.140017  s
+3851 <- maziau 6149 <-visi
+
+Deque
+1: 0.0894754  s 2: 0.124385  s  3: 0.134725  s  4: 0.132851  s
+3851 <- maziau 6149 <-visi
+
+f100000
+
+Vector
+1: 0.890515  s  2: 1.22061  s   3: 1.35563  s   4: 1.29839  s
+38050 <- maziau 61950 <-visi
+
+List
+1: 0.882845  s  2: 1.29156  s   3: 1.47594  s   4: 1.40954  s
+38050 <- maziau 61950 <-visi
+
+Deque
+1: 0.871913  s  2: 1.23085  s   3: 1.36097  s   4: 1.33017  s
+38050 <- maziau 61950 <-visi
+
+Process finished with exit code 0
