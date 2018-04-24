@@ -22,6 +22,8 @@ void grade (const std::string  vardas,const std::string pavarde,const double  pa
         printf("%.2f\n", galutinisPazymis);
     }
 }
+//!
+//! \param filenames filename to check if exists to know if need to generate new student files
 void Checkforfiles(const std::string &filenames) {
     std::ifstream f1;
     f1.exceptions(std::ifstream::failbit | std::ifstream::badbit);
@@ -31,7 +33,7 @@ void Checkforfiles(const std::string &filenames) {
         getline(f1, buf);
         f1.seekg(0, std::ios_base::beg);
     }
-    catch (std::ios_base::failure &e){
+    catch (...){
         std::cout<<"Student files not found, generating new files...\n";
         generateStudentFile("f10",10);
         generateStudentFile("f100",100);

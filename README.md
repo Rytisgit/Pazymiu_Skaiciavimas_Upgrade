@@ -35,6 +35,7 @@ This is an update to Pazymiu_skaiciavimas it implements a class student object i
 
 # Results
 Not much difference between o1 and o3 current, big jump from no optimization, however still slower than struct speeds. Will need to further optimize.
+After testing on intel based machine(previously tested on ryzen) the speeds become very close, newes results in raw -o3 intel
 
 ### Changelog v0.1
 #### Added
