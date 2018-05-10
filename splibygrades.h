@@ -10,17 +10,19 @@
 #include <sstream>
 #include <fstream>
 #include <numeric>
-#include "pazym.h"
+#include <regex>
+
 #include "splitbygradesclass.h"
 
 
 struct Timer{
-    std::chrono::time_point<std::chrono::steady_clock> start,end;
+    using clock = std::chrono::steady_clock;
+    std::chrono::time_point<clock> start,end;
     Timer(){
-        start = std::chrono::steady_clock::now();
+        start = clock::now();
     }
     ~Timer(){
-        end =  std::chrono::steady_clock::now();
+        end =  clock::now();
         std::cout<<(double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000<<" ";
     }
 };
@@ -156,32 +158,4 @@ void testing(greitas &geri,greitas &blogi,pilnas &visi, pilnas &maziau,std::stri
     std::cout<<maziau.size()<<" <- maziau "<<visi.size()<<" <-visi\n";
     maziau.clear();visi.clear();
 };
-#endif //PAZYMIAI_SPLIBYGRADES_H
-//template<typename T>
-//struct pavTest
-//{
-//bool operator()(const T &Mok,const T &prevMok) {
-//    return (Mok.pavarde > prevMok.pavarde);
-//}
-//};
-
-//bool pavTest(const greitasMokinys &Mok,const greitasMokinys &prevMok) {
-//    return (Mok.pavarde > prevMok.pavarde);
-//}
-//bool pavTest(const allMokinys &Mok,const allMokinys &prevMok) {
-//    return (Mok.pavarde > prevMok.pavarde);
-//}
-
-//template <typename test,typename T,
-//        typename std::enable_if<!std::is_same<test,std::list<greitasMokinys>>::value && !std::is_same<test,std::list<allMokinys>>::value>::type >
-//void sortIt(test &notList,T pavTest){
-//    std::sort(notList.begin(),notList.end(),pavTest);
-//}
-//template <typename T>
-//void sortIt(std::list<greitasMokinys> &list,T pavTest){
-//    list.sort(pavTest);
-//}
-//template <typename T>
-//void sortIt(std::list<allMokinys> &list,T pavTest){
-//    list.sort(pavTest);
-//}
+#endif

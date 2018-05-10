@@ -12,3 +12,4 @@ const double studentClass::galBalas(double (*func)(std::vector<int> &, double)) 
 bool test(studentClass &Mok) {
     return Mok.galBalas() < 6;
 }
+
