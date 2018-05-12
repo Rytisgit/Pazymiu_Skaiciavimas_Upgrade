@@ -25,6 +25,8 @@ void generateStudentFile(const std::string name, const int length) {
     }
 
 }
+
+
 void Checkforfiles(const std::string &filenames) {
     std::ifstream f1;
     f1.exceptions(std::ifstream::failbit | std::ifstream::badbit);
@@ -36,11 +38,13 @@ void Checkforfiles(const std::string &filenames) {
     }
     catch (std::ios_base::failure &e){
         std::cout<<"Student files not found, generating new files...\n";
-        generateStudentFile("f10",10);
-        generateStudentFile("f100",100);
-        generateStudentFile("f1000",1000);
-        generateStudentFile("f10000",10000);
-        generateStudentFile("f100000",100000);
+        std::string name = filenames;
+        int length;
+        for (size_t count = 0; count < 5 ; ++count) {
+            generateStudentFile(name,10);
+            name+="0";
+
+        }
         std::cout<<"Done.\n";
     }
 }

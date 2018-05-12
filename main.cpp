@@ -1,4 +1,3 @@
-#include <chrono>
 #include <deque>
 #include <list>
 #include "splibygrades.h"
@@ -22,9 +21,9 @@ int main()
             std::vector<studentClass> allMok;
             std::vector<studentClass> lessMok;
             std::vector<studentClass> classMok;
-            //studentClass a = {"a","bv"};
-            //classMok.push_back(a);
-           // std::cout<<classMok[0].getvardas()<<classMok[0].getpavarde()<<classMok[0].galBalas();
+//            studentClass a = {"a","bv",{1,2,3}};
+//
+//           std::cout<<a;
 
             gMok.reserve(50000);
             bMok.reserve(70000);
