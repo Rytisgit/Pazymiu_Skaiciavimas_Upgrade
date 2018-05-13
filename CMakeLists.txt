@@ -8,7 +8,12 @@ SET(GCC_COVERAGE_COMPILE_FLAGS "-fopenmp")
 
 add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
 
-set(SOURCE_FILES main.cpp randutils.hpp splibygrades.h splitbygradesclass.cpp splitbygradesclass.h calculation.cpp calculation.h filecheck.cpp filecheck.h)
+set(SOURCE_FILES main.cpp randutils.hpp splibygrades.h splitbygradesclass.cpp splitbygradesclass.h calculation.cpp calculation.h filecheck.cpp filecheck.h catch.hpp)
 
 add_executable(pazymiai ${SOURCE_FILES})
+
+set(stuff catch.hpp testing.cpp calculation.cpp)
+
+
+add_executable(testing ${stuff})
 

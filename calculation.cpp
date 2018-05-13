@@ -1,27 +1,33 @@
 //
 // Created by SuperPC on 4/23/2018.
 //
-
+#include "catch.hpp"
 #include <algorithm>
 #include <numeric>
 #include "calculation.h"
 
-double weightedmedian(std::vector<int> & medi,const double weight)
-{
-    std::sort(medi.begin(), medi.end());     // sort
 
-    int tmedian{};
-    if (medi.size() % 2 == 0)           // even
-        tmedian = (medi[medi.size() / 2 - 1] + medi[medi.size() / 2]) / 2;
+double weightedmedian(std::vector<int> & inputvector,const double weight)
+{
+    std::sort(inputvector.begin(), inputvector.end());     // sort
+
+    int tmedian{0};
+    if (inputvector.size() % 2 == 0)           // even
+        tmedian = (inputvector[inputvector.size() / 2 - 1] + inputvector[inputvector.size() / 2]) / 2;
     else                                // odd
-        tmedian = medi[medi.size() / 2];
+        tmedian = inputvector[inputvector.size() / 2];
 
     return weight * tmedian;
 }
-double weightedaverage(std::vector<int> & temps,const double weight)
-{
-    return weight * std::accumulate(temps.begin(),temps.end(),0.0) / temps.size();
+TEST_CASE("weighted medians","[weightedmedian]"){
+    std::vector<int> input{1,2,3};
+    REQUIRE(weightedmedian(input,1)==2.0);
+
 }
-double weightedaverage(const std::vector<int> & temps,const double weight) {
-    return weight * std::accumulate(temps.begin(), temps.end(), 0.0) / temps.size();
+double weightedaverage(std::vector<int> & inputvector,const double weight)
+{
+    return weight * std::accumulate(inputvector.begin(),inputvector.end(),0.0) / inputvector.size();
+}
+double weightedaverage(const std::vector<int> & inputvector,const double weight) {
+    return weight * std::accumulate(inputvector.begin(), inputvector.end(), 0.0) / inputvector.size();
 }

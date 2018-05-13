@@ -73,8 +73,6 @@ bool gradebinarypred(studentClass &a, studentClass &b);
 /// \param a first class
 /// \param b second class
 /// \return true if name surname and final grade is equal otherwise false
-bool operator==(studentClass &a, studentClass &b){
-    return a.getpavarde()==b.getpavarde()&&a.getvardas()==b.getvardas()&&a.galBalas()==b.galBalas();
-}
+bool operator==(studentClass &a, studentClass &b);
 
 #endif //PAZYMIAI_SPLITBYGRADESCLASS_H

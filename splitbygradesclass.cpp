@@ -32,4 +32,6 @@ bool namebinarypred(studentClass &a, studentClass &b) {
 bool gradebinarypred(studentClass &a, studentClass &b){
     return a.galBalas()<b.galBalas();
 };
-
+bool operator==(studentClass &a, studentClass &b){
+    return a.getpavarde()==b.getpavarde()&&a.getvardas()==b.getvardas()&&a.galBalas()==b.galBalas();
+}
