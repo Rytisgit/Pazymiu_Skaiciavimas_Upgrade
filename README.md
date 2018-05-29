@@ -5,6 +5,46 @@
 
 This is an update to Pazymiu_skaiciavimas it implements a class student object instead of the struct used previuosly.
 
+## Cool stuff
+```c++
+struct Timer{
+    using clock = std::chrono::steady_clock;
+    std::chrono::time_point<clock> start,end;
+    Timer(){
+        /// starts timing in constructor
+        start = clock::now();
+    }
+    ~Timer(){
+        ///outputs time since constructor in destructor
+        end =  clock::now();
+        std::cout<<(double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/1000000000<<" ";
+    }
+};
+template<typename _ForwardIterator,typename _Output, typename _Predicate>
+_ForwardIterator
+__remove_copy_if_done_right(_ForwardIterator __first, _ForwardIterator __last, _Output& __destination,
+            _Predicate __pred)
+{
+    __first = std::__find_if(__first, __last, __pred);
+    if (__first == __last)
+        return __first;
+    _ForwardIterator __result = __first;
+    ++__first;
+    for (; __first != __last; ++__first)
+        if (!__pred(__first))
+
+        {
+            *__result = _GLIBCXX_MOVE(*__first);
+            ++__result;
+        }
+        else{
+        __destination.push_back(*__first);
+    }
+    return __result;
+}
+
+```
+
 # Times Comparison -O3 current vs -O2 struct(in seconds)(also available raw times of -O1 and no optimization)
 ### Vector  
 
@@ -34,8 +74,20 @@ This is an update to Pazymiu_skaiciavimas it implements a class student object i
 **splitEraseOneByOne** | 0.000836822  vs 0.000316649  | 0.00739914  vs  0.00277776 |   0.072399       vs 0.0271104 | 0.838799  vs 0.283125 
 
 # Results
-Not much difference between o1 and o3 current, big jump from no optimization, however still slower than struct speeds. Will need to further optimize.
-After testing on intel based machine(previously tested on ryzen) the speeds become very close, newes results in raw -o3 intel
+After testing on intel based machine(previously tested on amd) the speeds become very close, newest results in raw -o3 intel
+
+
+### Changelog v1.0
+#### Added
+ - catch testing
+
+### Changelog v0.2
+#### Added
+ - doxygen documentation
+### Changes
+- comments in doxygen style
+
+
 
 ### Changelog v0.1
 #### Added
