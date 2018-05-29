@@ -1,5 +1,5 @@
 
-# Pazymiu_Skaiciavimas_Upgrade v0.1
+# Pazymiu_Skaiciavimas_Upgrade v1.0
 
 ## Description
 
