@@ -5,7 +5,7 @@
 
 This is an update to Pazymiu_skaiciavimas it implements a class student object instead of the struct used previuosly.
 
-# Times Comparison(in seconds)
+# Times Comparison -O3 current vs -O2 struct(in seconds)(also available raw times of -O1 and no optimization)
 ### Vector  
 
  Name\Size| 100       | 1000     | 10000      | 100000
@@ -33,6 +33,9 @@ This is an update to Pazymiu_skaiciavimas it implements a class student object i
 **splitLeaveTwoCopies** |0.000848191  vs 0.000330237   |0.00731845  vs  0.00273145  | 0.0754108     vs 0.0285229 |0.786287   vs  0.282105
 **splitEraseOneByOne** | 0.000836822  vs 0.000316649  | 0.00739914  vs  0.00277776 |   0.072399       vs 0.0271104 | 0.838799  vs 0.283125 
 
+# Results
+Not much difference between o1 and o3 current, big jump from no optimization, however still slower than struct speeds. Will need to further optimize.
+After testing on intel based machine(previously tested on ryzen) the speeds become very close, newes results in raw -o3 intel
 
 ### Changelog v0.1
 #### Added

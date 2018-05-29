@@ -1,0 +1,62 @@
+"U:\Desktop\New folder\cmake-build-debug\pazymiai.exe"
+Pasirinkimai: a - stress, b - normalus veikimas
+a
+a
+
+f100
+
+Vector
+1: 0.00328506  s        2: 0.0012554  s 3: 0.00114124  s        4: 0.00061234  s
+45 <- maziau 55 <-visi
+
+List
+1: 0.00093992  s        2: 0.00064227  s        3: 0.00090337  s        4: 0.00105088  s
+45 <- maziau 55 <-visi
+
+Deque
+1: 0.0007755  s 2: 0.00070847  s        3: 0.00065228  s        4: 0.00098245  s
+45 <- maziau 55 <-visi
+
+f1000
+
+Vector
+1: 0.00875913  s        2: 0.00343835  s        3: 0.00326044  s        4: 0.00357958  s
+386 <- maziau 614 <-visi
+
+List
+1: 0.00312314  s        2: 0.00463429  s        3: 0.00973127  s        4: 0.0040842  s
+386 <- maziau 614 <-visi
+
+Deque
+1: 0.00447783  s        2: 0.00342205  s        3: 0.00343426  s        4: 0.00340958  s
+386 <- maziau 614 <-visi
+
+f10000
+
+Vector
+1: 0.0367706  s 2: 0.0300912  s 3: 0.0305989  s 4: 0.0506705  s
+3823 <- maziau 6177 <-visi
+
+List
+1: 0.0363815  s 2: 0.0316875  s 3: 0.0333441  s 4: 0.0393711  s
+3823 <- maziau 6177 <-visi
+
+Deque
+1: 0.0300409  s 2: 0.0323194  s 3: 0.0378411  s 4: 0.0325908  s
+3823 <- maziau 6177 <-visi
+
+f100000
+
+Vector
+1: 0.323725  s  2: 0.350675  s  3: 0.318384  s  4: 0.383551  s
+37998 <- maziau 62002 <-visi
+
+List
+1: 0.344957  s  2: 0.345086  s  3: 0.395402  s  4: 0.346623  s
+37998 <- maziau 62002 <-visi
+
+Deque
+1: 0.314903  s  2: 0.358581  s  3: 0.32883  s   4: 0.346306  s
+37998 <- maziau 62002 <-visi
+
+Process finished with exit code 0

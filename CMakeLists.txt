@@ -4,7 +4,9 @@ project (pazymiai)
 
 set(CMAKE_CCX_STANDARD 11)
 
-SET(GCC_COVERAGE_COMPILE_FLAGS "-fopenmp")
+
+SET(GCC_COVERAGE_COMPILE_FLAGS "-O3 -fopenmp -std=c++11")
+
 
 add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
 
